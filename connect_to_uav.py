@@ -6,6 +6,7 @@ import csv
 import re
 import netifaces
 import time
+import wifi
 
 #Class object for the UAV
 class AP_drone:
@@ -73,7 +74,7 @@ def scan_wifi():
     try:
         cmd = "sudo airodump-ng -t OPN --output-format csv -w {0} {1} >>/dev/null 2>>/dev/null".format(drone_list, iface_mon)
         os.system("gnome-terminal -- {0}".format(cmd))
-        os.system("sleep 15")
+        os.system("sleep 5")
     except Exception as e:
         print("Can't run airodump-ng")
 
@@ -87,12 +88,22 @@ def find_drone():
                 if re.match(drone_macs[0],row[0]) or re.match(drone_macs[1],row[0]) or re.match(drone_macs[2],row[0]) or re.match(drone_macs[3],row[0]) or re.match(drone_macs[4],row[0]) :
                     drone_list.append(AP_drone(row[0], row[13]))
         print("Target : {0}".format(drone_list[0].essid))
-    # cmd = "sudo rm drone_list-0*"
-    # os.system(cmd)
+    cmd = "sudo rm drone_list-0*"
+    os.system(cmd)
+
+def search_ap(netlist,drone):
+    for ap in netlist:
+        if ' '+ap.ssid == drone.essid:
+            return ap
+    return False
 
 def connect(drone):
-    cmd = "sudo iwconfig {0} essid {1} && sudo dhclient".format(iface, drone.essid)
-    os.system(cmd)
+    netlist = wifi.Cell.all(iface)
+    uav = search_ap(netlist, drone)
+    print(uav.ssid)
+    scheme = wifi.Scheme.for_cell(iface, uav.ssid, uav, None)
+    scheme.activate()
+
 
 
 def main():
