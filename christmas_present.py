@@ -26,6 +26,8 @@ def christmas_present_main():
     if(path==''):
         path = "krokmou.png"
 
+    print(path)
+
     print('\n{}Trying to locate and talk to {}Krokmou{}'.format(GREEN,RED,GREEN),end='')
     animate(10)
     try:
