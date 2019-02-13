@@ -78,7 +78,7 @@ def main():
             elif choice == '5':
                 christmas_present_main()
             else:
-                print('\n{}ERROR{}: Bad option. Please select a valid option.\n)'.format(RED,GREEN))
+                print('\n{}ERROR{}: Bad option. Please select a valid option.\n'.format(RED,GREEN))
     except KeyboardInterrupt:
         shutdown()
 
