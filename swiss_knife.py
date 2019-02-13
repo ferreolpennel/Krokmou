@@ -3,9 +3,10 @@
 import os, sys, logging, math
 from time import sleep
 from command_injection import *
+from christmas_present import *
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
 
-
+#Check if Krokmou was launched with root privileges
 try:
     if os.geteuid() != 0:
         print('{}ERROR{}: Krokmou must be run with root privileges. Try again !\n'.format(RED,GREEN))
@@ -13,7 +14,7 @@ try:
 except:
     pass
 
-
+#Header of the program
 def head():
     os.system("clear")
     sys.stdout.write(GREEN + """
@@ -25,6 +26,7 @@ def head():
     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝
     """ + '\n' + '{}Take control of any {}ARDrone2.0{} nearby and make him do funny things !\n'.format(YELLOW,RED,YELLOW))
 
+#Display menu with options of the program
 def menu():
     print('\n{}Choose what you want to do: \n'.format(GREEN))
     print('\t{}1{} - Take control !'.format(RED, GREEN))
@@ -34,10 +36,14 @@ def menu():
     print('\t{}5{} - Leave a Christmas present for USB keys'.format(RED,GREEN))
     print('\n\t{}E{} - Exit\n'.format(RED,GREEN))
 
+
+#Function to call to exit Krokmou
 def shutdown():
-    print('\n{}Exiting...\n'.format(GREEN))
+    print('\n{}Exiting...\n{}'.format(GREEN,WHITE))
+    os.system("clear")
     os._exit(0)
 
+#Checking depencies needed by Krokou
 def check_dependencies():
     try:
         import nmap
@@ -48,6 +54,8 @@ def check_dependencies():
         print("\n{}ERROR{}: System do not meet requirements. Please check the dependencies needed by Krokmou in README\n".format(RED,GREEN))
         os._exit(1)
 
+
+#Main function of Krokmou
 def main():
     check_dependencies()
     head()
@@ -68,7 +76,7 @@ def main():
             elif choice == '4':
                 root()
             elif choice == '5':
-                send_virus()
+                christmas_present_main()
             else:
                 print('\n{}ERROR{}: Bad option. Please select a valid option.\n)'.format(RED,GREEN))
     except KeyboardInterrupt:

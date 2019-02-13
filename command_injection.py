@@ -18,7 +18,7 @@ def menu():
     print('\t{}3{} - Krokmou climb !'.format(RED,GREEN))
     print("\t{}4{} - Krokmou descend !".format(RED,GREEN))
     print('\t{}5{} - Krokmou 36 no scoop !'.format(RED,GREEN))
-    print('\n\t{}B{} - Back'.format(RED,GREEN))
+    print('\n\t{}B{} - Back\n'.format(RED,GREEN))
 sleep(0.3)
 
 def take_off():
@@ -44,7 +44,7 @@ def land():
 def ci_main():
     while True:
         menu()
-        header = '{}Krokmou >'.format(GREEN,WHITE)
+        header = '{}Krokmou > '.format(GREEN,WHITE)
         choice = input(header)
 
         if choice.upper() == 'B' or choice.upper() == 'BACK':
