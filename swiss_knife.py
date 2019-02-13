@@ -14,6 +14,7 @@ except:
 
 
 def head():
+    os.system("clear")
     sys.stdout.write(GREEN + """
     ██╗  ██╗██████╗  ██████╗ ██╗  ██╗███╗   ███╗ ██████╗ ██╗   ██╗
     ██║ ██╔╝██╔══██╗██╔═══██╗██║ ██╔╝████╗ ████║██╔═══██╗██║   ██║
@@ -30,7 +31,7 @@ def menu():
     print('\t{}3{} - Send control commands to make him crazy'.format(RED,GREEN))
     print("\t{}4{} - Let's just be root !".format(RED,GREEN))
     print('\t{}5{} - Leave a Christmas present for USB keys'.format(RED,GREEN))
-    print('\n\t{}E - Exit'.format(RED,GREEN))
+    print('\n\t{}E{} - Exit'.format(RED,GREEN))
 
 def shutdown():
     print('{}Exiting...'.format(GREEN))
@@ -38,7 +39,7 @@ def shutdown():
 
 def check_dependencies():
     try:
-        import nmap, spoof
+        import nmap#, spoof
     except KeyboardInterrupt:
         shutdown()
     except:
