@@ -22,7 +22,7 @@ def head():
     ██╔═██╗ ██╔══██╗██║   ██║██╔═██╗ ██║╚██╔╝██║██║   ██║██║   ██║
     ██║  ██╗██║  ██║╚██████╔╝██║  ██╗██║ ╚═╝ ██║╚██████╔╝╚██████╔╝
     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝
-    """ + '\n' + '{}Take control of any {}ARDrone2.0{} nearby and make him do funny things !\n'.format(BLUE,RED,BLUE))
+    """ + '\n' + '{}Take control of any {}ARDrone2.0{} nearby and make him do funny things !\n'.format(YELLOW,RED,YELLOW))
 
 def menu():
     print('\n{}Choose what you want to do: \n'.format(GREEN))
@@ -31,15 +31,16 @@ def menu():
     print('\t{}3{} - Send control commands to make him crazy'.format(RED,GREEN))
     print("\t{}4{} - Let's just be root !".format(RED,GREEN))
     print('\t{}5{} - Leave a Christmas present for USB keys'.format(RED,GREEN))
-    print('\n\t{}E{} - Exit'.format(RED,GREEN))
+    print('\n\t{}E{} - Exit\n'.format(RED,GREEN))
 
 def shutdown():
-    print('{}Exiting...'.format(GREEN))
+    print('\n{}Exiting...\n'.format(GREEN))
     os._exit(0)
 
 def check_dependencies():
     try:
-        import nmap#, spoof
+        import nmap
+        import spoof
     except KeyboardInterrupt:
         shutdown()
     except:
@@ -52,7 +53,7 @@ def main():
     try:
         while True:
             menu()
-            header = '{}Krokmou{} >'.format(GREEN,WHITE)
+            header = '{}Krokmou{} > '.format(GREEN,WHITE)
             choice = input(header)
 
             if choice.upper() == 'E' or choice.upper() == 'EXIT':
