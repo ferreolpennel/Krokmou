@@ -30,10 +30,8 @@ def head():
 def menu():
     print('\n{}Choose what you want to do: \n'.format(GREEN))
     print('\t{}1{} - Take control !'.format(RED, GREEN))
-    print('\t{}2{} - Replace video stream by Krokmou'.format(RED,GREEN))
-    print('\t{}3{} - Send control commands to make him crazy'.format(RED,GREEN))
-    print("\t{}4{} - Let's just be root !".format(RED,GREEN))
-    print('\t{}5{} - Leave a Christmas present for USB keys'.format(RED,GREEN))
+    print('\t{}2{} - Send control commands to make him crazy'.format(RED,GREEN))
+    print('\t{}3{} - Leave a Christmas present for USB keys'.format(RED,GREEN))
     print('\n\t{}E{} - Exit\n'.format(RED,GREEN))
 
 
@@ -69,13 +67,9 @@ def main():
                 shutdown()
             elif choice == '1':
                 take_control()
-            elif choice =='2':
-                stream_hack()
-            elif choice == '3':
+            elif choice == '2':
                 ci_main()
-            elif choice == '4':
-                root()
-            elif choice == '5':
+            elif choice == '3':
                 christmas_present_main()
             else:
                 print('\n{}ERROR{}: Bad option. Please select a valid option.\n'.format(RED,GREEN))
