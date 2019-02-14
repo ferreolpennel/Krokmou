@@ -13,6 +13,11 @@ def animate(length):
 def launch_uav_search():
     print('\n{}Initializing interface for search'.format(GREEN),end='')
     animate(10)
+    try:
+        os.system("sudo service network-manager stop")
+    except:
+        print("\n{}ERROR{}: Can't stop network-manager service.\n".format(RED,GREEN))
+        os._exit(1)
 
     try:
         interface = init_iface()
@@ -48,13 +53,22 @@ def launch_uav_search():
             break
         elif int(choice) <= len(drone_list):
             selected_UAV = drone_list[int(choice)]
-            #try:
-            connect(interface, selected_UAV)
-            print("\n{}Connected to UAV Wifi network.\n".format(GREEN))
-            break
-            """except:
+            try:
+                connect(interface, selected_UAV)
+                os.system("sudo dhclient {}".format(interface))
+                print("\n{}Connected to UAV Wifi network.\n".format(GREEN))
+                break
+            except:
                 print("\n{}ERROR{}: Unable to connect to UAV.\n".format(RED,GREEN))
                 os._exit(1)
-"""
+
         else:
             print("{}ERROR{}: Choose a UAV in the list.".format(RED,GREEN))
+
+def stop_search_uav():
+    print("\n{}Restoring network-manager service...\n".format(GREEN))
+    try:
+        os.system("sudo service network-manager start\n")
+        print("\n{}Service restored.\n".format(GREEN))
+    except:
+        print("\n{}ERROR{}: Can't start network-manager service.\n".format(RED,GREEN))

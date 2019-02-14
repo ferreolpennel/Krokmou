@@ -38,6 +38,7 @@ def menu():
 
 #Function to call to exit Krokmou
 def shutdown():
+    stop_search_uav()
     print('\n{}Exiting...\n{}'.format(GREEN,WHITE))
     os.system("clear")
     os._exit(0)
