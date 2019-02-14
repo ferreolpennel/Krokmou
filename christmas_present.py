@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, time, sys, telnetlib
+import os, time, sys, telnetlib, ntpath
 from ftplib import FTP
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\033[0m'
 
@@ -25,8 +25,6 @@ def christmas_present_main():
     path = input(header)
     if(path==''):
         path = "krokmou.png"
-
-    print(path)
 
     print('\n{}Trying to locate and talk to {}Krokmou{}'.format(GREEN,RED,GREEN),end='')
     animate(10)
@@ -54,7 +52,7 @@ def christmas_present_main():
     animate(10)
     try:
         present_file = open(path,'rb')
-        ftp.storbinary('STOR '+ path, present_file)
+        ftp.storbinary('STOR '+ ntpath.basename(path), present_file)
         present_file.close()
     except:
         print("\n\n{}ERROR{}: Can't send {}christmas present{} to Krokmou\n".format(RED,GREEN,RED,GREEN))
