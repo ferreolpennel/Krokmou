@@ -4,7 +4,6 @@ import wifi, os
 import netifaces
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
-drone_macs = [ r"^90:03:B7", r"^A0:14:3D", r"^90:3A:E6", r"^00:26:7E", r"^00:12:1C"]
 
 def init_iface():
     iface_list = netifaces.interfaces()
@@ -46,15 +45,16 @@ def add(interface, cell, password=None):
 def connect(interface, cell, password=None):
 
     scheme = wifi.Scheme.find(interface, cell.ssid)
-    if scheme == "None":
+    print(scheme)
+    if scheme == None:
         scheme = add(interface,cell)
-    try:
-        scheme.activate()
-        print("activate ok")
-    except wifi.exceptions.ConnectionError:
+        print(scheme)
+    #try:
+    scheme.activate()
+    """except wifi.exceptions.ConnectionError:
         print("\n{}ERROR{}: Can't connect to UAV Wifi.\n".format(RED,GREEN))
         try:
             cell.delete()
         except:
             print("\n{}ERROR{}: Can't delete the configuration on the interface.\n".format(RED,GREEN))
-            os._exit(1)
+            os._exit(1)"""

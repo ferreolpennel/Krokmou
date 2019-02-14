@@ -2,6 +2,7 @@ from wifi_func import *
 import sys, os, re, time
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
+drone_macs = [ r"^90:03:B7", r"^A0:14:3D", r"^90:3A:E6", r"^00:26:7E", r"^00:12:1C"]
 
 def animate(length):
     for value in range(1,length):
@@ -29,7 +30,6 @@ def launch_uav_search():
         for cell in wifilist:
             if re.match(drone_macs[0],cell.address) or re.match(drone_macs[1],cell.address) or re.match(drone_macs[2],cell.address) or re.match(drone_macs[3],cell.address) or re.match(drone_macs[4],cell.address):
                 drone_list.append(cell)
-                print(cell.address)
 
     except:
         print("\n{}ERROR{}: Can't detect any vulnerable UAV.\n".format(RED,GREEN))
@@ -37,7 +37,7 @@ def launch_uav_search():
 
     print("\n{}List of vulnerable UAVs :\n".format(GREEN))
     for i in range(len(drone_list)):
-        print("{}{} : {} - {}\n".format(GREEN, i, cell.ssid, cell.address))
+        print("{}{} : {} - {}\n".format(GREEN, i, drone_list[i].ssid, drone_list[i].address))
 
     while True:
         print("{}Choose wich Krokmou you want to discuss with :\n".format(GREEN))
