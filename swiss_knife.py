@@ -59,7 +59,7 @@ def check_dependencies():
 def main():
     check_dependencies()
     head()
-    launch_uav_search()
+    #launch_uav_search()    #A décommenter quand la gestion du module wifi sera correctement gérer
     try:
         while True:
             menu()
