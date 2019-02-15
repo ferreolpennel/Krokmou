@@ -1,5 +1,6 @@
 from wifi_func import *
-import sys, os, re, 
+import sys, os, re, time
+from wifi import *
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
 drone_macs = [ r"^90:03:B7", r"^A0:14:3D", r"^90:3A:E6", r"^00:26:7E", r"^00:12:1C"]
@@ -13,11 +14,6 @@ def animate(length):
 def launch_uav_search():
     print('\n{}Initializing interface for search'.format(GREEN),end='')
     animate(10)
-    try:
-        os.system("sudo service network-manager stop")
-    except:
-        print("\n{}ERROR{}: Can't stop network-manager service.\n".format(RED,GREEN))
-        os._exit(1)
 
     try:
         interface = init_iface()
@@ -33,7 +29,7 @@ def launch_uav_search():
     try:
         wifilist = search(interface)
         for cell in wifilist:
-            if re.match(drone_macs[0],cell.address) or re.match(drone_macs[1],cell.address) or re.match(drone_macs[2],cell.address) or re.match(drone_macs[3],cell.address) or re.match(drone_macs[4],cell.address):
+            if re.match(drone_macs[0], cell.address) or re.match(drone_macs[1],cell.address) or re.match(drone_macs[2],cell.address) or re.match(drone_macs[3],cell.address) or re.match(drone_macs[4],cell.address):
                 drone_list.append(cell)
 
     except:
@@ -53,14 +49,14 @@ def launch_uav_search():
             break
         elif int(choice) <= len(drone_list):
             selected_UAV = drone_list[int(choice)]
-            try:
-                connect(interface, selected_UAV)
-                os.system("sudo dhclient {}".format(interface))
-                print("\n{}Connected to UAV Wifi network.\n".format(GREEN))
-                break
-            except:
+            #try:
+            connect(interface, selected_UAV)
+            os.system("sudo dhclient {}".format(interface))
+            print("\n{}Connected to UAV Wifi network.\n".format(GREEN))
+            break
+            """except:
                 print("\n{}ERROR{}: Unable to connect to UAV.\n".format(RED,GREEN))
-                os._exit(1)
+                os._exit(1)"""
 
         else:
             print("{}ERROR{}: Choose a UAV in the list.".format(RED,GREEN))

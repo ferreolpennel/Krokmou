@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import netifaces
-
+from wifi import *
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
 
@@ -22,7 +22,7 @@ def init_iface():
 
 def search(interface):
     wifilist = []
-    cells = wifi.Cell.all(interface)
+    cells = Cell.all(interface)
 
     for cell in cells:
         wifilist.append(cell)
@@ -31,27 +31,33 @@ def search(interface):
 
 
 def add(interface, cell, password=None):
-    #try:
-    scheme = wifi.Scheme.for_cell(interface, cell.ssid, cell, password)
-    scheme.save()
-    print("save ok")
-    """except:
+    try:
+        scheme = Scheme.for_cell(interface, cell.ssid, cell, password)
+        scheme.save()
+    except:
         print("\n{}ERROR{}: Can't create the configuration for the connection to the UAV.\n".format(RED,GREEN))
         os._exit(1)
-"""
+
     return scheme
 
 
 def connect(interface, cell, password=None):
 
-    scheme = wifi.Scheme.find(interface, cell.ssid)
+    try:
+        os.system("sudo service network-manager stop")
+        print("{}\nNetwork-manager service stopped\n".format(GREEN))
+    except:
+        print("\n{}ERROR{}: Can't stop network-manager service.\n".format(RED,GREEN))
+        os._exit(1)
+
+    scheme = Scheme.find(interface, cell.ssid)
     print(scheme)
     if scheme == None:
         scheme = add(interface,cell)
         print(scheme)
     #try:
     scheme.activate()
-    """except wifi.exceptions.ConnectionError:
+    """except exceptions.ConnectionError:
         print("\n{}ERROR{}: Can't connect to UAV Wifi.\n".format(RED,GREEN))
         try:
             cell.delete()
