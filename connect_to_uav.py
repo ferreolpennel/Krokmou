@@ -67,12 +67,6 @@ drone_macs = [ r"^90:03:B7", r"^A0:14:3D", r"^90:3A:E6", r"^00:26:7E", r"^00:12:
 #     cmd = "sudo rm drone_list-0*"
 #     os.system(cmd)
 #     return drone_list
-# def connect(drone, iface):
-#     status = os.popen("ifconfig {0} up".format(iface)).read()
-#     os.popen("iwconfig {0} essid{1}".format(iface,drone.essid))
-#     print("Connecting to {1}{0}......".format(drone.essid, GREEN))
-#     os.popen("dhclient {0}".format(iface))
-#
 
 #ifaces of wifi card
 def init_iface():
@@ -118,9 +112,14 @@ def connect(iface):
     uav = list_of_drone[id]
     print(uav.essid)
     scheme = wifi.Scheme.for_cell(iface, uav.essid, uav.cell, None)
-    scheme.save()
     scheme.activate()
 
+# def connect(drone, iface):
+#     status = os.popen("ifconfig {0} up".format(iface)).read()
+#     os.popen("iwconfig {0} essid{1}".format(iface,drone.essid))
+#     print("Connecting to {1}{0}......".format(drone.essid, GREEN))
+#     os.popen("dhclient {0}".format(iface))
+#
 
 def main():
     (iface,iface_mon) = init_iface()

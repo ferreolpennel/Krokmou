@@ -17,8 +17,8 @@ import nmap
 #Class object for the clients of the UAV
 class Client:
     """ Class which defines clinets connected to the UAV and caracterized by:
-        - Mac address
-        - IP address """
+        - IP address
+        - MAC address """
     def __init__(self,ip, mac):
         self.ip = ip
         self.mac = mac

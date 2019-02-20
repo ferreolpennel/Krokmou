@@ -4,6 +4,7 @@ import os, sys, logging, math
 from time import sleep
 from command_injection import *
 from christmas_present import *
+from take_control import *
 from search_uav import *
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
 
@@ -69,7 +70,7 @@ def main():
             if choice.upper() == 'E' or choice.upper() == 'EXIT':
                 shutdown()
             elif choice == '1':
-                take_control()
+                take_control_main()
             elif choice == '2':
                 ci_main()
             elif choice == '3':
