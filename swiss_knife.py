@@ -6,6 +6,7 @@ from command_injection import *
 from christmas_present import *
 from take_control import *
 from search_uav import *
+from detect_uav import *
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
 
 #Check if Krokmou was launched with root privileges
@@ -62,15 +63,28 @@ def main():
     head()
     #launch_uav_search()    #A décommenter quand la gestion du module wifi sera correctement gérer
     try:
+        #Choix de l'interface de Connection
+        try:
+            iface = init_iface()
+        except:
+            print("{}Aucun interface disponible".format(RED))
+
+        #Check if computer connect to the drone
+        (test,drone) = detect_uav_main(iface)
+        while  test == False:
+            # print ("{}...Connectez vous à un drone...".format(GREEN))
+            (test,drone) = detect_uav_main(iface)
+            sleep(2)
         while True:
             menu()
             header = '{}Krokmou{} > '.format(GREEN,WHITE)
+
             choice = input(header)
 
             if choice.upper() == 'E' or choice.upper() == 'EXIT':
                 shutdown()
             elif choice == '1':
-                take_control_main()
+                take_control_main(drone, iface)
             elif choice == '2':
                 ci_main()
             elif choice == '3':
