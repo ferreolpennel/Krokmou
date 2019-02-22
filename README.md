@@ -5,9 +5,9 @@ Ce projet porte sur l'AR Drone 2.0 de Parrot. Le but étant de faire un état de
 # Prérequis:
   - Cette petite application nécessitent des outils tels que la suite aircrack-ng et de nombreuses librairies python3
   - Afin de controller le drone via votre ordinateur, veuillez récupérer le dépot suivant et le cloner dans la racine du répertoire de Krokmou:
-  
+
        https://github.com/functino/drone-browser.git
-       
+
 # Installation:
     $ git clone https://github.com/ferreolpennel/Krokmou.git
     $ cd Krokmou
@@ -17,12 +17,10 @@ Ce projet porte sur l'AR Drone 2.0 de Parrot. Le but étant de faire un état de
     $ cd ../
     $ pip3 install -r requirements.txt
     $ chmod+x swiss_knife
-  
-  
+
+
 # Lancement de Krokmou
 
-Simplement lancer le programme python swiss_knife avec les droits root:
+Simplement lancer le programme python krokmou.py avec les droits root:
 
-    $ sudo ./swiss_knife 
-   
- 
+    $ sudo ./krokmou.py

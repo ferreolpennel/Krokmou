@@ -1,11 +1,4 @@
-# -.- coding: utf-8 -.-
-# detect_uav.py
-import os
-import csv
-import re
-import netifaces
-import time
-import wifi
+import os, csv, re, netifaces, time, wifi
 from wifi_func import *
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'

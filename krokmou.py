@@ -51,7 +51,6 @@ def check_dependencies():
         import nmap
         import spoof
         import wifi
-        import 
     except KeyboardInterrupt:
         shutdown()
     except:
@@ -87,7 +86,7 @@ def main():
             elif choice == '1':
                 take_control_main(drone, iface)
             elif choice == '2':
-                ci_main()
+                ci_main(drone, iface)
             elif choice == '3':
                 christmas_present_main()
             else:

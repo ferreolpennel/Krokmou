@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-import os
-import netifaces
+import os, netifaces
 from wifi import *
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
