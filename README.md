@@ -4,7 +4,8 @@ Ce projet porte sur l'AR Drone 2.0 de Parrot. Le but étant de faire un état de
 
 # Prérequis:
   - Cette petite application nécessitent des outils tels que la suite aircrack-ng et de nombreuses librairies python3
-  - Afin de controller le drone via votre ordinateur, veuillez récupérer le dépot suivant et le cloner dasn la racine du répertoire de Krokmou:
+  - Afin de controller le drone via votre ordinateur, veuillez récupérer le dépot suivant et le cloner dans la racine du répertoire de Krokmou:
+  
        https://github.com/functino/drone-browser.git
        
 # Installation:
