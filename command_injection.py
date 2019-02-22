@@ -60,4 +60,4 @@ def ci_main():
         elif choice == '5':
             three_six()
         else:
-            print('\n{}Grrrr{}: Krokmou doesn\'t understand.\n)'.format(RED,GREEN))
+            print('\n{}Grrrr{}: Krokmou doesn\'t understand.\n'.format(RED,GREEN))

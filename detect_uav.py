@@ -33,7 +33,7 @@ def init_iface():
     while n>c:
         msg += "\t{0}{2}{1} : {3} \n".format(RED, GREEN, c,iface_list[c])
         c+=1
-    msg+= "{}Your choice ? :{}".format(GREEN,WHITE)
+    msg+= '{}Krokmou > {}'.format(GREEN,WHITE)
     id_iface = int(input("\n{}Choose your iface:\n".format(GREEN)+msg))
     iface = iface_list[id_iface]
     return iface
@@ -43,13 +43,16 @@ def choose_the_drone(iface):
     n = len(drone_list)
     c = 0;
     msg = ""
-    while n>c:
-        msg += "\t{0}{2}{1} : {3} \n".format(RED, GREEN, c ,drone_list[c].essid)
-        c+=1
-    msg+= "{}Your choice ? :".format(GREEN)
-    id = int(input("\n{}Choose your uav:{}\n".format(GREEN, WHITE)+msg))
-    print("\t{1}Target : {2}{0}".format(drone_list[id].essid, GREEN, RED))
-    return id
+    if n == 0:
+        return -1
+    else:
+        while n>c:
+            msg += "\t{0}{2}{1} : {3} \n".format(RED, GREEN, c ,drone_list[c].essid)
+            c+=1
+        msg+= '{}Krokmou > {}'.format(GREEN,WHITE)
+        id = int(input("\n{}Choose your uav:\n{}".format(GREEN, WHITE)+msg))
+        print("\t{1}Target : {2}{0}".format(drone_list[id].essid, GREEN, RED))
+        return id
 
 
 #find ap around
@@ -93,5 +96,8 @@ def detect_uav_main(iface):
         test = ap_info(iface, drone_list[id])
         return (test,drone_list[id])
     except:
-        print("Not connected to an UAV")
+        if id == -1:
+            print("{}No UAV around you{}".format(RED, WHITE))
+        else:
+            print("{}Not connected to an UAV{}".format(RED, WHITE))
     return (False, None)

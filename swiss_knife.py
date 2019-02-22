@@ -65,15 +65,14 @@ def main():
     try:
         #Choix de l'interface de Connection
         try:
-            iface = init_iface()
+            iface = init_iface()  #fonction de connect_to_uav.py
         except:
             print("{}Aucun interface disponible".format(RED))
 
         #Check if computer connect to the drone
         (test,drone) = detect_uav_main(iface)
         while  test == False:
-            # print ("{}...Connectez vous à un drone...".format(GREEN))
-            (test,drone) = detect_uav_main(iface)
+            (test,drone) = detect_uav_main(iface)   #petit try/except pour tenter connexion automatique
             sleep(2)
         while True:
             menu()
