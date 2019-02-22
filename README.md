@@ -21,6 +21,7 @@ Ce projet porte sur l'AR Drone 2.0 de Parrot. Le but étant de faire un état de
 # Lancement de Krokmou
 
 Simplement lancer le programme python swiss_knife avec les droits root:
+
     $ sudo ./swiss_knife 
    
  
