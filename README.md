@@ -16,7 +16,7 @@ Ce projet porte sur l'AR Drone 2.0 de Parrot. Le but étant de faire un état de
     $ npm install -d
     $ cd ../
     $ pip3 install -r requirements.txt
-    $ chmod+x swiss_knife
+    $ chmod+x krokmou.py
 
 
 # Lancement de Krokmou
