@@ -78,6 +78,7 @@ def ap_info(iface, drone):
     os.system(cmd)
     mon_fichier = open("wifi_connection", "r")
     contenu = mon_fichier.read()
+    os.system("rm -f wifi_connection")
     mon_fichier.close()
     # print(contenu)
     name = drone.essid
