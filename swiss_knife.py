@@ -50,6 +50,8 @@ def check_dependencies():
     try:
         import nmap
         import spoof
+        import wifi
+        import 
     except KeyboardInterrupt:
         shutdown()
     except:
