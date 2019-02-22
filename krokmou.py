@@ -42,6 +42,7 @@ def menu():
 def shutdown():
     #stop_search_uav()      #A decommenter quand la gestion du module wifi sera correctement gérer
     print('\n{}Exiting...\n{}'.format(GREEN,WHITE))
+    os.system("sudo service NetworkManager start")  # restart NetworkManager 
     os.system("clear")
     os._exit(0)
 
@@ -49,7 +50,8 @@ def shutdown():
 def check_dependencies():
     try:
         import nmap
-        import spoof
+        import netifaces
+        import scapy
         import wifi
     except KeyboardInterrupt:
         shutdown()
@@ -68,11 +70,18 @@ def main():
         try:
             iface = init_iface()  #fonction de connect_to_uav.py
         except:
-            print("{}Aucun interface disponible".format(RED))
+            print("{}No interfaces available".format(RED))
+
+        (test,drone) = detect_uav_main(iface)
+        try:
+            connect_to_uav(drone, iface)   # try to connect to the uav
+        except:
+            pass
 
         #Check if computer connect to the drone
-        (test,drone) = detect_uav_main(iface)
+        test = ap_info(iface, drone)
         while  test == False:
+            print("{}You are not connected to a UAV. Please do it manually.")
             (test,drone) = detect_uav_main(iface)   #petit try/except pour tenter connexion automatique
             sleep(2)
         while True:

@@ -1,6 +1,6 @@
-
 import os, time, sys, csv ,re
 from scan_clients import *
+from detect_uav import *
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\033[0m'
 
@@ -15,7 +15,7 @@ def stop_airmon(iface_mon):
     #switch off monitor mode and switch on managed mode
     cmd = "sudo airmon-ng stop {0} >>/dev/null 2>>/dev/null".format(iface_mon)
     os.system(cmd)
-    os.system("sudo service NetworkManager start")
+    # os.system("sudo service NetworkManager start")
 
 #find info about the UAV AP
 def scan_wifi(iface_mon, drone):
@@ -78,6 +78,7 @@ def take_control_main(drone, iface):
         except:
             print("{}No client connected{}".format(RED, WHITE))
     stop_airmon(iface_mon)
+    connect_to_uav(drone, iface)  #re-connection to the UAV
     launch_server()
     while True:
         exit()

@@ -80,6 +80,15 @@ def ap_info(iface, drone):
     else:
         return False
 
+#Connection to UAV
+def connect_to_uav(drone, iface):
+    os.system("sudo service NetworkManager stop")
+    status = os.system("ifconfig {0} up".format(iface))
+    os.system("iwconfig {0} essid {1}".format(iface,drone.essid))
+    print("Connecting to {1}{0}......".format(drone.essid, GREEN))
+    os.system("dhclient -v {0}".format(iface))
+
+
 
 #Check if connexion already exist
 def detect_uav_main(iface):
@@ -95,3 +104,20 @@ def detect_uav_main(iface):
         else:
             print("{}Not connected to an UAV{}".format(RED, WHITE))
     return (False, None)
+
+
+
+
+# #find drone AP
+# def find_drone():
+#     with open("drone_list-01.csv", newline="") as file:
+#         reader = csv.reader(file)
+#         for row in reader:
+#             n = len(row)
+#             if n == 15:
+#                 if re.match(drone_macs[0],row[0]) or re.match(drone_macs[1],row[0]) or re.match(drone_macs[2],row[0]) or re.match(drone_macs[3],row[0]) or re.match(drone_macs[4],row[0]) :
+#                     drone_list.append(AP_drone(row[0], row[13]))
+#     # print("Target : {0}".format(drone_list[0].essid))
+#     cmd = "sudo rm drone_list-0*"
+#     os.system(cmd)
+#     return drone_list
