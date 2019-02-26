@@ -1,4 +1,4 @@
-scapy-python3
+scapy
 python-nmap
 netifaces
 wifi
