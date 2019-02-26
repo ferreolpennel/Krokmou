@@ -43,7 +43,6 @@ def find_channel(mac_drone):
     os.system(cmd)
     return channel
 
-
 def eject_client(client, mac_drone, drone_essid, iface_mon):
     channel = find_channel(mac_drone)
     os.system("sudo iwconfig {0} channel {1}".format(iface_mon, channel))
@@ -51,13 +50,20 @@ def eject_client(client, mac_drone, drone_essid, iface_mon):
     for i in range(10):
         os.system(cmd)
 
+def demote():
+    os.seteuid(1000)
+
 def launch_server():
     cmd = "cd drone-browser && node server.js >>/dev/null 2>>/dev/null &"
     cmd2 = "firefox localhost:3001"
-    os.system(cmd)
+    #os.system(cmd)
+    server = subprocess.Popen(cmd, shell=True)
     print("\n{}INFO{}: Please connect to localhost:3001 on your browser{}".format(YELLOW, GREEN, WHITE))
     #os.system(cmd2)
-    subprocess.call('exit && firefox http://localhost:3001', shell=True)
+
+
+    firefox = subprocess.Popen('firefox http://localhost:3001 >>/dev/null 2>>/dev/null &', shell=True, preexec_fn=demote())
+    return server, firefox
 
 
 def exit():
@@ -81,14 +87,17 @@ def take_control_main(drone, iface):
             print("{}ERROR{}:No client connected{}".format(RED,GREEN, WHITE))
     stop_airmon(iface_mon)
     connect_to_uav(drone, iface)  #re-connection to the UAV
-    launch_server()
+    serv,firefox = launch_server()
+
     while True:
         exit()
         header = '{}Krokmou > {}'.format(GREEN,WHITE)
         choice = input(header)
 
         if choice.upper() == 'B' or choice.upper() == 'BACK':
-            os.system("sudo killall node") #clean the nodejs server. Be carrefull if other node js are running
+            #os.system("sudo killall node") #clean the nodejs server. Be carrefull if other node js are running
+            serv.terminate()
+            #firefox.terminate()
             # firefox to kill with child PID from subprocess
             break
         else:
