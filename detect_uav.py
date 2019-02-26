@@ -96,7 +96,11 @@ def connect_to_uav(drone, iface):
 
 #Check if connexion already exist
 def detect_uav_main(iface):
-    ap_list = find_ap(iface)
+    try:
+        ap_list = find_ap(iface)
+    except :
+        print("{}Sorry, scan not supported by iface {}{}.\n".format(RED, YELLOW,iface))
+        exit(1)
     drone_list = find_drone(ap_list)
     id = choose_the_drone(drone_list)
     try :
