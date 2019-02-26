@@ -75,15 +75,22 @@ def main():
         (test,drone) = detect_uav_main(iface)
 
         #Check if computer connect to the drone
-        test = ap_info(iface, drone)
+        try:
+            test = ap_info(iface, drone)
+        except :
+            pass
         if test == False:
             try:
                 connect_to_uav(drone, iface)   # try to connect to the uav
             except:
                 pass
-        test = ap_info(iface, drone)
+        try:
+            test = ap_info(iface, drone)
+        except Exception as e:
+            pass
+            
         while  test == False:
-            print("{}You are not connected to a UAV. Please do it manually.")
+            print("{}You are not connected to a UAV. Please do it manually.{}".format(RED, WHITE))
             (test,drone) = detect_uav_main(iface)   #petit try/except pour tenter connexion automatique
             sleep(2)
         while True:

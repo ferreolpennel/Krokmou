@@ -21,14 +21,16 @@ drone_macs = [ r"^90:03:B7", r"^A0:14:3D", r"^90:3A:E6", r"^00:26:7E", r"^00:12:
 def init_iface():
     iface_list = netifaces.interfaces()
     n = len(iface_list)
-    c = 0;
-    msg = ""
-    while n>c:
-        msg += "\t{0}{2}{1} : {3} \n".format(RED, GREEN, c,iface_list[c])
-        c+=1
-    msg+= '{}Krokmou > {}'.format(GREEN,WHITE)
-    id_iface = int(input("\n{}Choose your iface:\n".format(GREEN)+msg))
-    iface = iface_list[id_iface]
+    id_iface=''
+    while id_iface == '':
+        c = 0;
+        msg = ""
+        while n>c:
+            msg += "\t{0}{2}{1} : {3} \n".format(RED, GREEN, c,iface_list[c])
+            c+=1
+        msg+= '{}Krokmou > {}'.format(GREEN,WHITE)
+        id_iface = input("\n{}Choose your iface:\n".format(GREEN)+msg)
+    iface = iface_list[int(id_iface)]
     return iface
 
 def choose_the_drone(iface):
