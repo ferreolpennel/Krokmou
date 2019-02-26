@@ -57,7 +57,7 @@ def launch_server():
     os.system(cmd)
     print("\n{}INFO{}: Please connect to localhost:3001 on your browser{}".format(YELLOW, GREEN, WHITE))
     #os.system(cmd2)
-    subprocess.call('firefox http://localhost:3001', shell=True)
+    subprocess.call('exit && firefox http://localhost:3001', shell=True)
 
 
 def exit():

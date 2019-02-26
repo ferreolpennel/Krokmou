@@ -114,7 +114,6 @@ def main():
         try:
             test = ap_info(iface, drone)
         except :
-            print("{}ERROR{}: Unexpected error as occured\n".format(RED,GREEN))
             os._exit(1)
 
         if test == False:
@@ -126,7 +125,6 @@ def main():
         try:
             test = ap_info(iface, drone)
         except :
-            print("{}ERROR{}: Unexpected error as occured\n".format(RED,GREEN))
             os._exit(1)
 
         #If automatic connection doesn't work, restart NetworkManager to allow manual connection
