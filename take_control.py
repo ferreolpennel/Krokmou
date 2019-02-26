@@ -55,9 +55,10 @@ def launch_server():
     cmd = "cd drone-browser && node server.js >>/dev/null 2>>/dev/null &"
     cmd2 = "firefox localhost:3001"
     os.system(cmd)
-    print("\n{}Please connect to localhost:3001 on your browser{}".format(GREEN, WHITE))
+    print("\n{}INFO{}: Please connect to localhost:3001 on your browser{}".format(YELLOW, GREEN, WHITE))
     #os.system(cmd2)
     subprocess.call('firefox http://localhost:3001', shell=True)
+
 
 def exit():
     print('\n{}The UAV is under the control of Krokmou ! \n'.format(GREEN))

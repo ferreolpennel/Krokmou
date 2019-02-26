@@ -1,4 +1,3 @@
 scapy
 python-nmap
 netifaces
-wifi

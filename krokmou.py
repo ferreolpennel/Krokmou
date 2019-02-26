@@ -85,7 +85,6 @@ def check_dependencies():
         import nmap
         import netifaces
         import scapy
-        import wifi
     except KeyboardInterrupt:
         shutdown()
     except:
@@ -138,7 +137,7 @@ def main():
                 print("{}ERROR{}: Can't restart NetworkManager service. Please restart it manually\n".format(RED,GREEN))
 
             print("{}ERROR{}: You are not connected to a UAV. Please do it manually.".format(RED,GREEN))
-            
+
         while test == False:
             try:
                 (test,drone) = detect_uav_main(iface)
