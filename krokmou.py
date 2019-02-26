@@ -88,11 +88,15 @@ def main():
             test = ap_info(iface, drone)
         except Exception as e:
             pass
-            
+        #If automatic connection doesn't work, restart NetworkManager to allow manual connection
+        if test == False:
+            os.system("service NetworkManager start")
+
         while  test == False:
             print("{}You are not connected to a UAV. Please do it manually.{}".format(RED, WHITE))
-            (test,drone) = detect_uav_main(iface)   #petit try/except pour tenter connexion automatique
+            (test,drone) = detect_uav_main(iface)
             sleep(2)
+
         while True:
             menu()
             header = '{}Krokmou{} > '.format(GREEN,WHITE)

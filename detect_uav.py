@@ -36,16 +36,18 @@ def init_iface():
 def choose_the_drone(iface):
     drone_list = find_drone(iface)
     n = len(drone_list)
-    c = 0;
-    msg = ""
     if n == 0:
         return -1
     else:
+        c = 0;
+        msg = ""
         while n>c:
             msg += "\t{0}{2}{1} : {3} \n".format(RED, GREEN, c ,drone_list[c].essid)
             c+=1
         msg+= '{}Krokmou > {}'.format(GREEN,WHITE)
-        id = int(input("\n{}Choose your uav:\n{}".format(GREEN, WHITE)+msg))
+        id = c+2
+        while id >= c:
+            id = int(input("\n{}Choose your uav:\n{}".format(GREEN, WHITE)+msg))
         print("\t{1}Target : {2}{0}".format(drone_list[id].essid, GREEN, RED))
         return id
 
