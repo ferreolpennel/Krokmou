@@ -1,4 +1,4 @@
-import os, time, sys, csv ,re
+import os, time, sys, csv, re, subprocess
 from scan_clients import *
 from detect_uav import *
 
@@ -55,8 +55,9 @@ def launch_server():
     cmd = "cd drone-browser && node server.js >>/dev/null 2>>/dev/null &"
     cmd2 = "firefox localhost:3001"
     os.system(cmd)
-    print("{}Please connect to localhost:3001 on your browser{}".format(GREEN, WHITE))
-    # os.system(cmd2)
+    print("\n{}Please connect to localhost:3001 on your browser{}".format(GREEN, WHITE))
+    #os.system(cmd2)
+    subprocess.call('firefox http://localhost:3001', shell=True)
 
 def exit():
     print('\n{}The UAV is under the control of Krokmou ! \n'.format(GREEN))
@@ -76,7 +77,7 @@ def take_control_main(drone, iface):
             scan_wifi(iface_mon,drone)
             eject_client(client, mac_drone, drone_essid, iface_mon)
         except:
-            print("{}No client connected{}".format(RED, WHITE))
+            print("{}ERROR{}:No client connected{}".format(RED,GREEN, WHITE))
     stop_airmon(iface_mon)
     connect_to_uav(drone, iface)  #re-connection to the UAV
     launch_server()
@@ -87,6 +88,7 @@ def take_control_main(drone, iface):
 
         if choice.upper() == 'B' or choice.upper() == 'BACK':
             os.system("sudo killall node") #clean the nodejs server. Be carrefull if other node js are running
+            # firefox to kill with child PID from subprocess
             break
         else:
             print('\n{}Grrrr{}: Krokmou doesn\'t understand.\n'.format(RED,GREEN))

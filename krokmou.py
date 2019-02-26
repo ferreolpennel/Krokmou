@@ -105,33 +105,46 @@ def main():
         except KeyboardInterrupt:
             shutdown()
         except:
-            print("{}No interfaces available \n".format(RED))
+            print("{}ERROR{}: No interfaces available\n".format(RED,GREEN))
+            os._exit(1)
 
 
         (test,drone) = detect_uav_main(iface)
-
 
         #Check if computer connect to the drone
         try:
             test = ap_info(iface, drone)
         except :
-            pass
+            print("{}ERROR{}: Unexpected error as occured\n".format(RED,GREEN))
+            os._exit(1)
+
         if test == False:
             try:
                 connect_to_uav(drone, iface)   # try to connect to the uav
             except:
-                pass
+                print("{}ERROR{}: Can't connect to Krokmou\n".format(RED,GREEN))
+                os._exit(1)
         try:
             test = ap_info(iface, drone)
-        except Exception as e:
-            pass
+        except :
+            print("{}ERROR{}: Unexpected error as occured\n".format(RED,GREEN))
+            os._exit(1)
+
         #If automatic connection doesn't work, restart NetworkManager to allow manual connection
         if test == False:
-            os.system("service NetworkManager start")
+            try:
+                os.system("service NetworkManager start")
+            except:
+                print("{}ERROR{}: Can't restart NetworkManager service. Please restart it manually\n".format(RED,GREEN))
 
-        while  test == False:
-            print("{}You are not connected to a UAV. Please do it manually.{}".format(RED, WHITE))
-            (test,drone) = detect_uav_main(iface)
+            print("{}ERROR{}: You are not connected to a UAV. Please do it manually.".format(RED,GREEN))
+            
+        while test == False:
+            try:
+                (test,drone) = detect_uav_main(iface)
+            except:
+                print("{}ERROR{}: Can't detect any UAV".format(RED, GREEN))
+                os._exit(1)
             sleep(2)
 
         while True:

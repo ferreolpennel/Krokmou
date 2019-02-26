@@ -77,7 +77,6 @@ def ap_info(iface, drone):
     contenu = mon_fichier.read()
     os.system("rm -f wifi_connection")
     mon_fichier.close()
-    # print(contenu)
     name = drone.essid
     if re.search(name,contenu):
         return True
@@ -89,7 +88,7 @@ def connect_to_uav(drone, iface):
     os.system("sudo service NetworkManager stop")
     status = os.system("ifconfig {0} up".format(iface))
     os.system("iwconfig {0} essid {1}".format(iface,drone.essid))
-    print("Connecting to {1}{0}......".format(drone.essid, GREEN))
+    print("\n{}Connecting to {}{}{}......".format(GREEN, WHITE, drone.essid,GREEN))
     os.system("dhclient -v {0}".format(iface))
 
 
