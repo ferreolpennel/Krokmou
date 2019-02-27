@@ -1,4 +1,4 @@
-import os, csv, re, netifaces, time, wifi
+import os, csv, re, netifaces, time, subprocess
 from wifi_func import *
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
@@ -36,16 +36,24 @@ def init_iface():
 def choose_the_drone(iface):
     drone_list = find_drone(iface)
     n = len(drone_list)
-    c = 0;
-    msg = ""
     if n == 0:
         return -1
     else:
+        c = 0;
+        msg = ""
         while n>c:
             msg += "\t{0}{2}{1} : {3} \n".format(RED, GREEN, c ,drone_list[c].essid)
             c+=1
         msg+= '{}Krokmou > {}'.format(GREEN,WHITE)
-        id = int(input("\n{}Choose your uav:\n{}".format(GREEN, WHITE)+msg))
+        id = c+2
+        while not (id < c and id >= 0 ):
+            try:
+                id = int(input("\n{}Choose your uav:\n{}".format(GREEN, WHITE)+msg))
+            except KeyboardInterrupt:
+                os.system("clear")
+                os._exit(0)
+            except:
+                print("{}\nERROR{}: Enter a valid number".format(RED,GREEN))
         print("\t{1}Target : {2}{0}".format(drone_list[id].essid, GREEN, RED))
         return id
 
@@ -75,7 +83,6 @@ def ap_info(iface, drone):
     contenu = mon_fichier.read()
     os.system("rm -f wifi_connection")
     mon_fichier.close()
-    # print(contenu)
     name = drone.essid
     if re.search(name,contenu):
         return True
@@ -87,14 +94,28 @@ def connect_to_uav(drone, iface):
     os.system("sudo service NetworkManager stop")
     status = os.system("ifconfig {0} up".format(iface))
     os.system("iwconfig {0} essid {1}".format(iface,drone.essid))
-    print("Connecting to {1}{0}......".format(drone.essid, GREEN))
-    os.system("dhclient -v {0}".format(iface))
+    print("\n{}Connecting to {}{}{}...\n".format(GREEN, RED, drone.essid,GREEN))
+    #os.system("dhclient -v {0}".format(iface))
+    cmd = "dhclient -v {}".format(iface)
+    dhclient = subprocess.Popen(cmd,shell=True)
+    try:
+        dhclient.wait(30)
+        print("\n{}Successfully connected to UAV...\n".format(GREEN))
+        os.system("clear")
+    except:
+        print("\n{}ERROR{}: Can't get a DHCP response\n".format(RED,GREEN))
+        os.system("sudo service NetworkManager start")
+        os._exit(1)
 
 
 
 #Check if connexion already exist
 def detect_uav_main(iface):
-    ap_list = find_ap(iface)
+    try:
+        ap_list = find_ap(iface)
+    except :
+        print("{}Sorry, scan not supported by iface {}{}.\n".format(RED, YELLOW,iface))
+        exit(1)
     drone_list = find_drone(ap_list)
     id = choose_the_drone(drone_list)
     try :

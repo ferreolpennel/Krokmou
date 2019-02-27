@@ -1,0 +1,14 @@
+\babel@toc {french}{}
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}Mat\IeC {\'e}riel et M\IeC {\'e}thode}{3}
+\contentsline {subsection}{\numberline {2.1}Mat\IeC {\'e}riel: \bsc {AR Drone 2.0}}{3}
+\contentsline {section}{\numberline {3}Hypoth\IeC {\`e}se de travail}{4}
+\contentsline {section}{\numberline {4}Pr\IeC {\'e}sentation vulgaris\IeC {\'e}e du travail}{5}
+\contentsline {subsection}{\numberline {4.1}Premiers pas avec le drone}{5}
+\contentsline {subsection}{\numberline {4.2}Prise de contr\IeC {\^o}le du drone}{5}
+\contentsline {subsection}{\numberline {4.3}Injection de commandes}{5}
+\contentsline {subsection}{\numberline {4.4}D\IeC {\'e}pose de virus sur le drone}{5}
+\contentsline {subsection}{\numberline {4.5}Conclusion}{5}
+\contentsline {section}{\numberline {5}Pr\IeC {\'e}sentation scientifique du travail}{7}
+\contentsline {section}{\numberline {6}Tutoriel}{8}
+\contentsline {section}{\numberline {7}Conclusion}{9}

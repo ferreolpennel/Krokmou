@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, sys, logging, math
+import os, sys, logging, math, time
 from time import sleep
 from command_injection import *
 from christmas_present import *
@@ -20,6 +20,39 @@ except:
 #Header of the program
 def head():
     os.system("clear")
+    # sys.stdout.write(GREEN + """
+    #                     ;#+`               +#'`
+    #                    ####;              ,+###.
+    #                   ###'#'              ,#'+##,
+    #                  ###'+#.         `    .#+''@#`
+    #                 +#++''#.   ++@ `#++    #+++'##
+    #                :##++++#,  ###@` ####. `#+++'##'`
+    #                ##+++++#'`##'+# .@++## :#+++'+##`
+    #               ;##+++++#'@#+++#@#++''##.##++++'#+
+    #               ##++++++#+@#+########++#'##+++''##
+    #              `##+++++########@#'@@@###@#@++++++#.
+    #              ,#+++++###++++++''+++++''+###+++'+#;
+    #              ;#+++++++++++++''+++++++++++++++++#'
+    #              ;#+++#'++++++++''+++++++++++++++++#'
+    #              ,#++#'++++++++++'++++++++++++++@++#;
+    #               #+##+++++++++++++++++++++++++++@+@.
+    #               ##@+++++++++++++##+++++++++++++@##
+    #             '@#@@++++++++++++++++'+++++++++++###@# `
+    #            `+####+++++++++++++++++++++++++++++##@#.
+    #             #+#@#+++++++++++++++++++++++++++++##'#
+    #             #+'###+#@#@@++++++++++++++#@###++@@++#
+    #             ;#++#+@#,,:@@++++++++++++@##,,.@++@++;
+    #              @###+#.,,####++++++++++##@##,,#++@##
+    #               @####.,+ ###@#++++++##,@###,,#++@#
+    #               #@#+++:;@##@,+++++++###@@##,,@+###`
+    #               ##@#+#:.#@@+.#++++++#..@#@,,@++#'+
+    #              ``##@+++@;,.'##++++++++@','@++++@+,
+    #              `  @####+++###+++++++#++##++++#@#
+    #                 ``@#@#++##+++@++##+#+++####+``
+    #                    `@#+#@@@##+#+++#@@#++##.
+    #                       ,#@##+#@#@@@+#@#+.
+    #                            `'@####.
+    # """)
     sys.stdout.write(GREEN + """
     ██╗  ██╗██████╗  ██████╗ ██╗  ██╗███╗   ███╗ ██████╗ ██╗   ██╗
     ██║ ██╔╝██╔══██╗██╔═══██╗██║ ██╔╝████╗ ████║██╔═══██╗██║   ██║
@@ -41,10 +74,56 @@ def menu():
 #Function to call to exit Krokmou
 def shutdown():
     #stop_search_uav()      #A decommenter quand la gestion du module wifi sera correctement gérer
-    print('\n{}Exiting...\n{}'.format(GREEN,WHITE))
+    print('\n{}Exiting...\n\n'.format(GREEN))
     os.system("sudo service NetworkManager start")  # restart NetworkManager
+    animate_krokmou()
     os.system("clear")
     os._exit(0)
+
+#Function to animate info Display
+def animate_krokmou():
+    krokmou =  """
+                        ;#+`               +#'`
+                       ####;              ,+###.
+                      ###'#'              ,#'+##,
+                     ###'+#.         `    .#+''@#`
+                    +#++''#.   ++@ `#++    #+++'##
+                   :##++++#,  ###@` ####. `#+++'##'`
+                   ##+++++#'`##'+# .@++## :#+++'+##`
+                  ;##+++++#'@#+++#@#++''##.##++++'#+
+                  ##++++++#+@#+########++#'##+++''##
+                 `##+++++########@#'@@@###@#@++++++#.
+                 ,#+++++###++++++''+++++''+###+++'+#;
+                 ;#+++++++++++++''+++++++++++++++++#'
+                 ;#+++#'++++++++''+++++++++++++++++#'
+                 ,#++#'++++++++++'++++++++++++++@++#;
+                  #+##+++++++++++++++++++++++++++@+@.
+                  ##@+++++++++++++##+++++++++++++@##
+                '@#@@++++++++++++++++'+++++++++++###@# `
+               `+####+++++++++++++++++++++++++++++##@#.
+                #+#@#+++++++++++++++++++++++++++++##'#
+                #+'###+#@#@@++++++++++++++#@###++@@++#
+                ;#++#+@#,,:@@++++++++++++@##,,.@++@++;
+                 @###+#.,,####++++++++++##@##,,#++@##
+                  @####.,+ ###@#++++++##,@###,,#++@#
+                  #@#+++:;@##@,+++++++###@@##,,@+###`
+                  ##@#+#:.#@@+.#++++++#..@#@,,@++#'+
+                 ``##@+++@;,.'##++++++++@','@++++@+,
+                 `  @####+++###+++++++#++##++++#@#
+                    ``@#@#++##+++@++##+#+++####+``
+                       `@#+#@@@##+#+++#@@#++##.
+                          ,#@##+#@#@@@+#@#+.
+                               `'@####.
+    """
+
+    for i in krokmou:
+        sys.stdout.write(i)
+        sys.stdout.flush()
+        time.sleep(0.005)
+
+    time.sleep(2)
+
+
 
 #Checking depencies needed by Krokou
 def check_dependencies():
@@ -52,7 +131,6 @@ def check_dependencies():
         import nmap
         import netifaces
         import scapy
-        import wifi
     except KeyboardInterrupt:
         shutdown()
     except:
@@ -69,8 +147,12 @@ def main():
         #Choix de l'interface de Connection
         try:
             iface = init_iface()  #fonction de connect_to_uav.py
+        except KeyboardInterrupt:
+            shutdown()
         except:
-            print("{}No interfaces available".format(RED))
+            print("{}ERROR{}: No interfaces available\n".format(RED,GREEN))
+            os._exit(1)
+
 
         (test,drone) = detect_uav_main(iface)
 
@@ -78,21 +160,37 @@ def main():
         try:
             test = ap_info(iface, drone)
         except :
-            pass
+            os._exit(1)
+
         if test == False:
             try:
                 connect_to_uav(drone, iface)   # try to connect to the uav
+
             except:
-                pass
+                print("{}ERROR{}: Can't connect to Krokmou\n".format(RED,GREEN))
+                os._exit(1)
         try:
             test = ap_info(iface, drone)
-        except Exception as e:
-            pass
-            
-        while  test == False:
-            print("{}You are not connected to a UAV. Please do it manually.{}".format(RED, WHITE))
-            (test,drone) = detect_uav_main(iface)   #petit try/except pour tenter connexion automatique
+        except :
+            os._exit(1)
+
+        #If automatic connection doesn't work, restart NetworkManager to allow manual connection
+        if test == False:
+            try:
+                os.system("service NetworkManager start")
+            except:
+                print("{}ERROR{}: Can't restart NetworkManager service. Please restart it manually\n".format(RED,GREEN))
+
+            print("{}ERROR{}: You are not connected to a UAV. Please do it manually.".format(RED,GREEN))
+
+        while test == False:
+            try:
+                (test,drone) = detect_uav_main(iface)
+            except:
+                print("{}ERROR{}: Can't detect any UAV".format(RED, GREEN))
+                os._exit(1)
             sleep(2)
+
         while True:
             menu()
             header = '{}Krokmou{} > '.format(GREEN,WHITE)
