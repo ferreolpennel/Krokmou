@@ -1,4 +1,4 @@
-import os, csv, re, netifaces, time, wifi
+import os, csv, re, netifaces, time, subprocess
 from wifi_func import *
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
@@ -88,8 +88,18 @@ def connect_to_uav(drone, iface):
     os.system("sudo service NetworkManager stop")
     status = os.system("ifconfig {0} up".format(iface))
     os.system("iwconfig {0} essid {1}".format(iface,drone.essid))
-    print("\n{}Connecting to {}{}{}......\n".format(GREEN, WHITE, drone.essid,GREEN))
-    os.system("dhclient -v {0}".format(iface))
+    print("\n{}Connecting to {}{}{}......\n".format(GREEN, RED, drone.essid,GREEN))
+    #os.system("dhclient -v {0}".format(iface))
+    cmd = "dhclient -v {}".format(iface)
+    dhclient = subprocess.Popen(cmd,shell=True)
+    try:
+        dhclient.wait(30)
+        print("\n{}Successfully connected to UAV...\n".format(GREEN))
+        os.system("clear")
+    except:
+        print("\n{}ERROR{}: Can't get a DHCP response\n".format(RED,GREEN))
+        os.system("sudo service NetworkManager start")
+        os._exit(1)
 
 
 

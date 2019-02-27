@@ -119,6 +119,7 @@ def main():
         if test == False:
             try:
                 connect_to_uav(drone, iface)   # try to connect to the uav
+
             except:
                 print("{}ERROR{}: Can't connect to Krokmou\n".format(RED,GREEN))
                 os._exit(1)

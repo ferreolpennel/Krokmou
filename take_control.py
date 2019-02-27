@@ -58,17 +58,16 @@ def launch_server():
     cmd2 = "firefox localhost:3001"
     #os.system(cmd)
     server = subprocess.Popen(cmd, shell=True)
-    print("\n{}INFO{}: Please connect to localhost:3001 on your browser{}".format(YELLOW, GREEN, WHITE))
+    print("\n{}The UAV is under your control !\n".format(GREEN))
+    print("\n{}INFO{}: Please connect to {}http://localhost:3001{} with your browser".format(YELLOW, GREEN, WHITE, GREEN))
     #os.system(cmd2)
-
-
-    firefox = subprocess.Popen('firefox http://localhost:3001 >>/dev/null 2>>/dev/null &', shell=True, preexec_fn=demote())
-    return server, firefox
+    #firefox = subprocess.Popen('firefox http://localhost:3001 >>/dev/null 2>>/dev/null &', shell=True, preexec_fn=demote())
+    return server
 
 
 def exit():
-    print('\n{}The UAV is under the control of Krokmou ! \n'.format(GREEN))
-    print('\n\t{}B{} - Back\n'.format(RED,GREEN))
+    print("\n{}Please enter {}Stop (S){} when you're done playing with Krokmou to stop running jobs\n".format(GREEN,RED,GREEN))
+    print('\n\t{}S{} - Stop\n'.format(RED,GREEN))
 
 
 def take_control_main(drone, iface):
@@ -87,18 +86,19 @@ def take_control_main(drone, iface):
             print("{}ERROR{}:No client connected{}".format(RED,GREEN, WHITE))
     stop_airmon(iface_mon)
     connect_to_uav(drone, iface)  #re-connection to the UAV
-    serv,firefox = launch_server()
+    serv = launch_server()
 
     while True:
         exit()
         header = '{}Krokmou > {}'.format(GREEN,WHITE)
         choice = input(header)
 
-        if choice.upper() == 'B' or choice.upper() == 'BACK':
+        if choice.upper() == 'S' or choice.upper() == 'STOP':
             #os.system("sudo killall node") #clean the nodejs server. Be carrefull if other node js are running
             serv.terminate()
+            os.system("clear")
             #firefox.terminate()
-            # firefox to kill with child PID from subprocess
+            #firefox to kill with child PID from subprocess
             break
         else:
             print('\n{}Grrrr{}: Krokmou doesn\'t understand.\n'.format(RED,GREEN))
