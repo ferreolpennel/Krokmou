@@ -1,2 +1,35 @@
 \section{Tutoriel}
-Le tutoriel du projet se présente sous la forme d'une application Linux développée en Python permettant d'exploiter les trois types d'attaques présentées précédemment. Disponible à l'adresse suivante: \url{https://github.com/ferreolpennel/Krokmou}, cette application de démonstration est utilisable par tout utilisateur satisafaisant les pré-requis à son installation. L'application, appelée \bsc{Krokmou}, est dédiée à l'ARDrone 2.0 et ne permet des attaques que contre ce type de drone et ce à des fins de démonstration uniquement. Elle permet ainsi de prendre le contrôle d'un drone à la place d'un utilisateur légitime déjà connecté au drone, d'envoyer des commandes pirates au drone sans déconnecter l'utilisateur légitime de celui-ci et de déposer un virus de démonstration sur le drone. Elles illustre ainsi les attaques présentées précédemment et met en relief les failles correspondantes sur ce type de drone. 
+Le tutoriel du projet se présente sous la forme d'une application Linux développée en Python permettant d'exploiter les trois types d'attaques présentées précédemment. Disponible à l'adresse suivante: \url{https://github.com/ferreolpennel/Krokmou}, cette application de démonstration est utilisable par tout utilisateur satisafaisant les pré-requis à son installation. L'application, appelée \bsc{Krokmou}, est dédiée à l'ARDrone 2.0 et ne permet des attaques que contre ce type de drone et ce à des fins de démonstration uniquement. Elle permet ainsi de prendre le contrôle d'un drone à la place d'un utilisateur légitime déjà connecté au drone, d'envoyer des commandes pirates au drone sans déconnecter l'utilisateur légitime de celui-ci et de déposer un virus de démonstration sur le drone. Elles illustre ainsi les attaques présentées précédemment et met en relief les failles correspondantes sur ce type de drone.
+
+\subsection{Initialisation de l'application}
+L'application permet de sélectionner l'interface Wifi à utiliser pour se connecter au drone. Elle réalsie ensuite un scan des réseaux Wifi alentours et affiche ensuite uniquement les réseaux Wifi de drone Parrot. Il suffit à l'attaquant de sélectionner le drone auquel il veut se connecter puis l'application configure l'interface Wifi pour se connecter au drone.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.3]{images/opening.png}
+  \caption{Initialisation de l'application}
+\end{figure}
+
+\subsection{Menu principal}
+Le menu principal de l'application permet de sélectionner une des trois attaques afin de la réaliser sur le drone auquel l'attaquant s'est connecté précédemment.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.3]{images/main_menu.png}
+  \caption{Menu principal de l'application}
+\end{figure}
+
+\subsection{Prise de contrôle du drone}
+Cette option du menu permet à l'attaquant de prendre le contrôle du drone à la place de l'utilisateur légitime grâce à l'attaque décrite précédemment dans ce rapport. Le contrôle du drone se réalise au travers du navigateur Web et d'un serveur \textbf{Node.js} issu d'un dépôt Github (\url{https://github.com/functino/drone-browser}).
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.3]{images/taking_control.png}
+  \caption{Prise de contrôle du drone par l'application}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.3]{images/control_application.png}
+  \caption{Interface de contrôle web}
+\end{figure}

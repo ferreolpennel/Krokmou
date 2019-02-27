@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.26)  27 FEB 2019 15:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.26)  27 FEB 2019 16:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -684,13 +684,35 @@ LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 2.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)) [8
+)
+<images/opening.png, id=150, 1199.98312pt x 774.64406pt>
+File: images/opening.png Graphic file (type png)
+<use images/opening.png>
+Package pdftex.def Info: images/opening.png  used on input line 9.
+(pdftex.def)             Requested size: 359.99771pt x 232.395pt.
+<images/main_menu.png, id=151, 1196.97188pt x 772.38562pt>
+File: images/main_menu.png Graphic file (type png)
+<use images/main_menu.png>
+Package pdftex.def Info: images/main_menu.png  used on input line 18.
+(pdftex.def)             Requested size: 359.09433pt x 231.71747pt.
+ [8
 
 
-]
+ </home/alexis/workspace/Krokmou/Rapport/images/opening.png (PNG copy)>]
+<images/taking_control.png, id=159, 1202.99437pt x 664.73344pt>
+File: images/taking_control.png Graphic file (type png)
+<use images/taking_control.png>
+Package pdftex.def Info: images/taking_control.png  used on input line 27.
+(pdftex.def)             Requested size: 360.9011pt x 199.42157pt.
+<images/control_application.png, id=160, 1210.5225pt x 1283.54532pt>
+File: images/control_application.png Graphic file (type png)
+<use images/control_application.png>
+Package pdftex.def Info: images/control_application.png  used on input line 33.
+(pdftex.def)             Requested size: 363.15955pt x 385.06657pt.
+) [9 </home/alexis/workspace/Krokmou/Rapport/images/main_menu.png (PNG copy)> </home/alexis/workspace/Krokmou/Rapport/images/taking_control.png (PNG copy)>] [10 </home/alexis/workspace/Krokmou/Rapport/images/control_application.png (PNG copy)>]
 \openout2 = `conclu.aux'.
 
- (/home/alexis/workspace/Krokmou/Rapport/conclu.tex) [9
+ (/home/alexis/workspace/Krokmou/Rapport/conclu.tex) [11
 
 
 ]
@@ -700,7 +722,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 58.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 58.
 Package rerunfilecheck Info: File `Rapport.out' has not changed.
-(rerunfilecheck)             Checksum: 7B04801F0A8C4D7037671B6047EDD889;1271.
+(rerunfilecheck)             Checksum: B232D5985B4332F81353A297F0CB147E;1507.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -708,18 +730,18 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 7462 strings out of 494894
- 109590 string characters out of 6179473
- 195616 words of memory out of 5000000
- 10623 multiletter control sequences out of 15000+600000
- 60748 words of font info for 47 fonts, out of 8000000 for 9000
+ 7498 strings out of 494894
+ 110295 string characters out of 6179473
+ 196617 words of memory out of 5000000
+ 10644 multiletter control sequences out of 15000+600000
+ 63746 words of font info for 48 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  28i,6n,30p,1468b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on /home/alexis/workspace/Krokmou/Rapport/Rapport.pdf (10 pages, 163106 bytes).
+Output written on /home/alexis/workspace/Krokmou/Rapport/Rapport.pdf (12 pages, 1125076 bytes).
 PDF statistics:
- 174 PDF objects out of 1000 (max. 8388607)
- 154 compressed objects within 2 object streams
- 29 named destinations out of 1000 (max. 500000)
- 145 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 210 PDF objects out of 1000 (max. 8388607)
+ 184 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 189 words of extra memory for PDF output out of 10000 (max. 10000000)
 
