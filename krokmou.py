@@ -74,10 +74,18 @@ def menu():
 #Function to call to exit Krokmou
 def shutdown():
     #stop_search_uav()      #A decommenter quand la gestion du module wifi sera correctement gérer
-    print('\n{}Exiting...\n{}'.format(GREEN,WHITE))
+    print('\n{}Exiting{}'.format(GREEN,WHITE),end='')
+    animate(30)
     os.system("sudo service NetworkManager start")  # restart NetworkManager
     os.system("clear")
     os._exit(0)
+
+#Function to animate info Display
+def animate(length):
+    for value in range(1,length):
+        sys.stdout.write(GREEN + '.')
+        sys.stdout.flush()
+        time.sleep(0.05)
 
 #Checking depencies needed by Krokou
 def check_dependencies():

@@ -88,7 +88,7 @@ def connect_to_uav(drone, iface):
     os.system("sudo service NetworkManager stop")
     status = os.system("ifconfig {0} up".format(iface))
     os.system("iwconfig {0} essid {1}".format(iface,drone.essid))
-    print("\n{}Connecting to {}{}{}......\n".format(GREEN, RED, drone.essid,GREEN))
+    print("\n{}Connecting to {}{}{}...\n".format(GREEN, RED, drone.essid,GREEN))
     #os.system("dhclient -v {0}".format(iface))
     cmd = "dhclient -v {}".format(iface)
     dhclient = subprocess.Popen(cmd,shell=True)
