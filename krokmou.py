@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, sys, logging, math
+import os, sys, logging, math, time
 from time import sleep
 from command_injection import *
 from christmas_present import *
@@ -74,18 +74,56 @@ def menu():
 #Function to call to exit Krokmou
 def shutdown():
     #stop_search_uav()      #A decommenter quand la gestion du module wifi sera correctement gérer
-    print('\n{}Exiting{}'.format(GREEN,WHITE),end='')
-    animate(30)
+    print('\n{}Exiting...\n\n'.format(GREEN))
     os.system("sudo service NetworkManager start")  # restart NetworkManager
+    animate_krokmou()
     os.system("clear")
     os._exit(0)
 
 #Function to animate info Display
-def animate(length):
-    for value in range(1,length):
-        sys.stdout.write(GREEN + '.')
+def animate_krokmou():
+    krokmou =  """
+                        ;#+`               +#'`
+                       ####;              ,+###.
+                      ###'#'              ,#'+##,
+                     ###'+#.         `    .#+''@#`
+                    +#++''#.   ++@ `#++    #+++'##
+                   :##++++#,  ###@` ####. `#+++'##'`
+                   ##+++++#'`##'+# .@++## :#+++'+##`
+                  ;##+++++#'@#+++#@#++''##.##++++'#+
+                  ##++++++#+@#+########++#'##+++''##
+                 `##+++++########@#'@@@###@#@++++++#.
+                 ,#+++++###++++++''+++++''+###+++'+#;
+                 ;#+++++++++++++''+++++++++++++++++#'
+                 ;#+++#'++++++++''+++++++++++++++++#'
+                 ,#++#'++++++++++'++++++++++++++@++#;
+                  #+##+++++++++++++++++++++++++++@+@.
+                  ##@+++++++++++++##+++++++++++++@##
+                '@#@@++++++++++++++++'+++++++++++###@# `
+               `+####+++++++++++++++++++++++++++++##@#.
+                #+#@#+++++++++++++++++++++++++++++##'#
+                #+'###+#@#@@++++++++++++++#@###++@@++#
+                ;#++#+@#,,:@@++++++++++++@##,,.@++@++;
+                 @###+#.,,####++++++++++##@##,,#++@##
+                  @####.,+ ###@#++++++##,@###,,#++@#
+                  #@#+++:;@##@,+++++++###@@##,,@+###`
+                  ##@#+#:.#@@+.#++++++#..@#@,,@++#'+
+                 ``##@+++@;,.'##++++++++@','@++++@+,
+                 `  @####+++###+++++++#++##++++#@#
+                    ``@#@#++##+++@++##+#+++####+``
+                       `@#+#@@@##+#+++#@@#++##.
+                          ,#@##+#@#@@@+#@#+.
+                               `'@####.
+    """
+
+    for i in krokmou:
+        sys.stdout.write(i)
         sys.stdout.flush()
-        time.sleep(0.05)
+        time.sleep(0.005)
+
+    time.sleep(2)
+
+
 
 #Checking depencies needed by Krokou
 def check_dependencies():
