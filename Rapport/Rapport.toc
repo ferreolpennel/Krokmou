@@ -18,5 +18,5 @@
 \contentsline {section}{\numberline {6}Tutoriel}{8}{section.0.6}
 \contentsline {subsection}{\numberline {6.1}Initialisation de l'application}{8}{subsection.0.6.1}
 \contentsline {subsection}{\numberline {6.2}Menu principal}{8}{subsection.0.6.2}
-\contentsline {subsection}{\numberline {6.3}Prise de contr\IeC {\^o}le du drone}{8}{subsection.0.6.3}
+\contentsline {subsection}{\numberline {6.3}Prise de contr\IeC {\^o}le du drone}{9}{subsection.0.6.3}
 \contentsline {section}{\numberline {7}Conclusion}{11}{section.0.7}

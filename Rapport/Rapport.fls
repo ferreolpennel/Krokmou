@@ -78,6 +78,8 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 INPUT /home/alexis/workspace/Krokmou/Rapport/Rapport.aux
 INPUT /home/alexis/workspace/Krokmou/Rapport/Rapport.aux
 INPUT /home/alexis/workspace/Krokmou/Rapport/mat_met_hypo.aux
