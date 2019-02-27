@@ -46,8 +46,14 @@ def choose_the_drone(iface):
             c+=1
         msg+= '{}Krokmou > {}'.format(GREEN,WHITE)
         id = c+2
-        while id >= c:
-            id = int(input("\n{}Choose your uav:\n{}".format(GREEN, WHITE)+msg))
+        while not (id < c and id >= 0 ):
+            try:
+                id = int(input("\n{}Choose your uav:\n{}".format(GREEN, WHITE)+msg))
+            except KeyboardInterrupt:
+                os.system("clear")
+                os._exit(0)
+            except:
+                print("{}\nERROR{}: Enter a valid number".format(RED,GREEN))
         print("\t{1}Target : {2}{0}".format(drone_list[id].essid, GREEN, RED))
         return id
 
