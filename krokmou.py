@@ -64,6 +64,7 @@ def head():
 
 #Display menu with options of the program
 def menu():
+    os.system("clear")
     print('\n{}Choose what you want to do: \n'.format(GREEN))
     print('\t{}1{} - Take control !'.format(RED, GREEN))
     print('\t{}2{} - Send control commands to make him crazy'.format(RED,GREEN))

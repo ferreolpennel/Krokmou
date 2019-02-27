@@ -74,7 +74,8 @@ def take_control_main(drone, iface):
     network = '192.168.1.2-10'
     client_list = scanNetwork(network)
     if client_list == []:
-        print("{}You are the only one connected to the UAV".format(GREEN))
+        os.system("clear")
+        print("{}You are the only one connected to the UAV\n".format(GREEN))
         serv = launch_server()
     else:
         mac_drone = drone.bssid

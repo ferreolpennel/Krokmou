@@ -29,7 +29,7 @@ def init_iface():
             msg += "\t{0}{2}{1} : {3} \n".format(RED, GREEN, c,iface_list[c])
             c+=1
         msg+= '{}Krokmou > {}'.format(GREEN,WHITE)
-        id_iface = input("\n{}Choose your iface:\n".format(GREEN)+msg)
+        id_iface = input("\n{}Choose your Wifi interface:\n".format(GREEN)+msg)
     iface = iface_list[int(id_iface)]
     return iface
 
@@ -48,7 +48,7 @@ def choose_the_drone(iface):
         id = c+2
         while not (id < c and id >= 0 ):
             try:
-                id = int(input("\n{}Choose your uav:\n{}".format(GREEN, WHITE)+msg))
+                id = int(input("\n{}Choose your UAV:\n{}".format(GREEN, WHITE)+msg))
             except KeyboardInterrupt:
                 os.system("clear")
                 os._exit(0)
@@ -114,7 +114,7 @@ def detect_uav_main(iface):
     try:
         ap_list = find_ap(iface)
     except :
-        print("{}Sorry, scan not supported by iface {}{}.\n".format(RED, YELLOW,iface))
+        print("{}Sorry, scan not supported by the interface {}{}.\n".format(RED, YELLOW,iface))
         exit(1)
     drone_list = find_drone(ap_list)
     id = choose_the_drone(drone_list)
