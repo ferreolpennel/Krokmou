@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.5)  26 FEB 2019 16:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.26)  27 FEB 2019 15:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **Rapport.tex
-(/home/ferreol/workspace/Krokmou/Rapport/Rapport.tex
+(/home/alexis/workspace/Krokmou/Rapport/Rapport.tex
 LaTeX2e <2017-04-15>
-Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+Babel <3.18> and hyphenation patterns for 5 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -448,7 +448,7 @@ Package: fancyvrb 2008/02/07
 \WF@box=\box28
 \WF@everypar=\toks18
 Package: wrapfig 2003/01/31  v 3.6
-) (/home/ferreol/workspace/Krokmou/Rapport/Rapport.aux (/home/ferreol/workspace/Krokmou/Rapport/pres_travail.aux) (/home/ferreol/workspace/Krokmou/Rapport/tuto.aux) (/home/ferreol/workspace/Krokmou/Rapport/conclu.aux))
+) (/home/alexis/workspace/Krokmou/Rapport/Rapport.aux (/home/alexis/workspace/Krokmou/Rapport/mat_met_hypo.aux) (/home/alexis/workspace/Krokmou/Rapport/pres_vulg.aux) (/home/alexis/workspace/Krokmou/Rapport/pres_travail.aux) (/home/alexis/workspace/Krokmou/Rapport/tuto.aux) (/home/alexis/workspace/Krokmou/Rapport/conclu.aux))
 \openout1 = `Rapport.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
@@ -470,7 +470,8 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Info: Redefining \degres on input line 32.
 LaTeX Info: Redefining \dots on input line 32.
 LaTeX Info: Redefining \up on input line 32.
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count102
 \scratchdimen=\dimen110
@@ -548,7 +549,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 33.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/ferreol/workspace/Krokmou/Rapport/Rapport.toc
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/alexis/workspace/Krokmou/Rapport/Rapport.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 2.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -561,46 +562,58 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
  [1
 
-]
+] [2]
+\openout2 = `mat_met_hypo.aux'.
+
+ (/home/alexis/workspace/Krokmou/Rapport/mat_met_hypo.tex
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 41.
+(Font)              using `T1/lmr/bx/n' instead on input line 2.
 
-[2] [3] [4]
+[3
+
+]) [4]
+\openout2 = `pres_vulg.aux'.
+
+ (/home/alexis/workspace/Krokmou/Rapport/pres_vulg.tex) [5
+
+
+] [6]
 \openout2 = `pres_travail.aux'.
 
- (/home/ferreol/workspace/Krokmou/Rapport/pres_travail.tex) [5
+ (/home/alexis/workspace/Krokmou/Rapport/pres_travail.tex) [7
+
 
 ]
 \openout2 = `tuto.aux'.
 
- (/home/ferreol/workspace/Krokmou/Rapport/tuto.tex) [6
+ (/home/alexis/workspace/Krokmou/Rapport/tuto.tex) [8
 
 
 ]
 \openout2 = `conclu.aux'.
 
- (/home/ferreol/workspace/Krokmou/Rapport/conclu.tex) [7
+ (/home/alexis/workspace/Krokmou/Rapport/conclu.tex) [9
 
 
-] (/home/ferreol/workspace/Krokmou/Rapport/Rapport.aux (/home/ferreol/workspace/Krokmou/Rapport/pres_travail.aux) (/home/ferreol/workspace/Krokmou/Rapport/tuto.aux) (/home/ferreol/workspace/Krokmou/Rapport/conclu.aux))
+] (/home/alexis/workspace/Krokmou/Rapport/Rapport.aux (/home/alexis/workspace/Krokmou/Rapport/mat_met_hypo.aux) (/home/alexis/workspace/Krokmou/Rapport/pres_vulg.aux) (/home/alexis/workspace/Krokmou/Rapport/pres_travail.aux) (/home/alexis/workspace/Krokmou/Rapport/tuto.aux) (/home/alexis/workspace/Krokmou/Rapport/conclu.aux))
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 3846 strings out of 492982
- 54128 string characters out of 6134896
- 121676 words of memory out of 5000000
- 7313 multiletter control sequences out of 15000+600000
+ 3862 strings out of 494894
+ 54789 string characters out of 6179473
+ 115427 words of memory out of 5000000
+ 7074 multiletter control sequences out of 15000+600000
  60430 words of font info for 46 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
+ 14 hyphenation exceptions out of 8191
  41i,6n,30p,1468b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb>
-Output written on /home/ferreol/workspace/Krokmou/Rapport/Rapport.pdf (8 pages, 136150 bytes).
+Output written on /home/alexis/workspace/Krokmou/Rapport/Rapport.pdf (10 pages, 136807 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 58 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

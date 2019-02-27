@@ -37,45 +37,9 @@
 \section{Introduction}
 De plus en plus présents autour de nous, les drones de loisirs représentent à la fois des opportunités technologiques et des risques de sécurité. Régulièrement, nous pouvons observer des exemples de drones ayant perturber le trafic aérien par leur présence aux abords d'un aéroport. Ainsi un premier risque de sécurité qu'ils représentent est leur intégration dans l'espace aérien, espace que ces nouveaux aéronefs partagent avec de nombreux autres de toutes les tailles. Aussi des nouvelles règles sont à l'étude afin de réglementer ces activités de loisirs. Toutefois, même une fois réglementée et contrôlée, l'activité des drones de loisir présente un second risque de sécurité lié non plus à la gestion du drone par l'opérateur mais au drone lui-même. En effet, dans la course à l'innovation dans ce domaine porteur qu'est le drone de loisir, les entreprises négligent potentiellement l'aspect sécurité hardware et logicielle de leurs drones. Aussi, ceux-ci peuvent présenter de nombreuses vulnérabilités permettant à un attaquant extérieur de potentiellement prendre le contrôle du drone. Dans ce contexte, nous avons décidé d'étudier un drone grand public proposé par un des leaders du marché, la société \textit{Parrot}. Nous étudierons les différentes vulnérabilités potentiellement présentes sur ce drone et mettront en oeuvre un scénario d'attaque sous forme de tutoriel.
 
-\section{Matériel et Méthode}
-\subsection{Matériel: \bsc{AR Drone 2.0}}
-Nous allons étudier un \bsc{AR Drone 2.0}. C'est un hélicoptère quadrirotor pilotable via une liaison WiFi au travers d'une application disponible sous iOS, Android, Linux ou Windows. C'est un drone civil principalement destiné au divertissement. Il est équipé de:
-\medbreak
-\begin{itemize}
-    \item un \textit{processeur ARM Cortex A8 32 bits cadencé à 1 GHz}
-    \item \textit{1 Go de RAM DDR2 cadencée à 200 MHz}
-    \item un \textit{système d'exploitation Linux 2.6.32}
-    \item un \textit{module WiFi b/g/n}
-    \item un \textit{accéléromètre 3 axes}
-    \item un \textit{gyroscope 3 axes}
-    \item un \textit{capteur de pression}
-    \item un \textit{un magnétomètre 3 axes}
-    \item des \textit{capteurs de proximité à ultrasons}
-    \item une \textit{caméra vericale QVGA}
-    \item un \textit{port USB 2.0}
-\end{itemize}
+\include{mat_met_hypo}
 
-
-\section{Hypothèse de travail}
-Pour ce projet, nous supposerons que le drone utilisé est un ARDrone 2.0 qui n'a pas subi de modifications logicielles et qui est donc dans un état identique à sa sortie d'usine. Il dispose ainsi uniquement des protections éventuelles prévues par le constructeur Parrot. Nous supposons dans le cadre de ce projet que nous sommes  dans la position de l'attaquant et que l'ARDrone 2.0 est connecté et contrôlé par un client légitime.
-
-
-\section{Présentation vulgarisée du travail}
-\subsection{Premiers pas avec le drone}
-Ce projet est centré sur la découverte de vulnérabilités sur l'ARDrone 2.0. Une première mise sous tension du drone nous a permis de découvrir que celui-ci propose un réseau Wifi ouvert, donc non protégé, permettant de se connecter à celui-ci et de le contrôler. Cette observation a grandement orienté notre travail. En effet, nous nous attendions à trouver un réseau Wifi sécurisé qu'il aurait été nécessaire de contourner ou de pénétrer afin d'avoir accès au drone. Cependant, le réseau ouvert nous permet en tant qu'attaquant de nous connecter directement au réseau Wifi créé par le drone. L'ARDrone 2.0 supporte la connexion de plusieurs cleints simultanés à son réseau Wifi, toutefois seul le premier client connecté au réseau est maître du drone et a la possibilité de le contrôler. En supposant qu'un client légitime est connecté au drone, la question est: que peut faire l'attaquant ?
-
-\subsection{Prise de contrôle du drone}
-Une première idée est la prise de contrôle du drone par l'attaquant. Une fois connecté au réseau du drone, l'attaquant n'a qu'à déconnecter l'uitlisateur légitime pour devenir le maître du drone. Ainsi en envoyant des messages au drone demandant la déconnexion du client légitime, l'attaquant est capable de reprendre le contrôle du drone une fois celui-ci déconnecté.
-
-\subsection{Injection de commandes}
-Dans ce cas, le client légitime reste maître du drone. Toutefois l'attaquant se fait passer pour le client légitime et envoie des messages au drone. Il peut anisi lui envoyer des instructions que le client légitime n'a jamais envoyé. Par exemple, l'attaquant peut envoyer au drone l'instruction d'atterrir à la place du client légitime.
-
-\subsection{Dépose de virus sur le drone}
-Ce troisième point exploite une faille importante du drone. En effet, celui-ci offre à tout utilisateur connecté à son réseau Wifi la possibilité d'accéder directement au système d'exploitation du drone en ayant tous les droits sur celui-ci et sans authentification et protection. Ainsi, en tant qu'attaquant connecté au réseau Wifi du drone, nous utilisons cet accès au drone pour déposer sur celui-ci un script. Ce script est chargé de copier une image sur toute clé USB connectée au drone ceci afin de démontrer le potentiel de l'attaque. Il est en effet aisé de diffuser n'importe quel virus qui se diffuse par clé USB grâce au drone et ceci sans difficultés particulières.
-
-\subsection{Conclusion}
-Ces trois attaques différentes permettent de démontrer les vulnérabilités majeures que présente l'ARDrone 2.0. Une des failles principales de celui-ci est son réseau Wifi non protégé. La protection de celui-ci par du WPA2 permettrait de rendre ces trois différentes attaques beaucoup plus complexes car l'attaquant aurait dans un premier temps besoin de casser le réseau Wifi. De plus, le drone offre des accès non protégés et privilégiés qui sont une faille majeure et permettent à un attaquant une prise de contrôle complète sur le drone.
-
+\include{pres_vulg}
 
 \include{pres_travail}
 
