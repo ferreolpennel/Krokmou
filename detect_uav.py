@@ -54,7 +54,7 @@ def choose_the_drone(iface):
                 os._exit(0)
             except:
                 print("{}\nERROR{}: Enter a valid number".format(RED,GREEN))
-        print("\t{1}Target : {2}{0}".format(drone_list[id].essid, GREEN, RED))
+        print("\n\t{1}Target : {2}{0}".format(drone_list[id].essid, GREEN, RED))
         return id
 
 

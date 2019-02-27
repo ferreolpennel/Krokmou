@@ -1,2 +1,53 @@
 \section{Tutoriel}
-Le tutoriel du projet se présente sous la forme d'une application Linux développée en Python permettant d'exploiter les trois types d'attaques présentées précédemment. Disponible à l'adresse suivante: \url{https://github.com/ferreolpennel/Krokmou}, cette application de démonstration est utilisable par tout utilisateur satisafaisant les pré-requis à son installation. L'application, appelée \bsc{Krokmou}, est dédiée à l'ARDrone 2.0 et ne permet des attaques que contre ce type de drone et ce à des fins de démonstration uniquement. Elle permet ainsi de prendre le contrôle d'un drone à la place d'un utilisateur légitime déjà connecté au drone, d'envoyer des commandes pirates au drone sans déconnecter l'utilisateur légitime de celui-ci et de déposer un virus de démonstration sur le drone. Elles illustre ainsi les attaques présentées précédemment et met en relief les failles correspondantes sur ce type de drone. 
+Le tutoriel du projet se présente sous la forme d'une application Linux développée en Python permettant d'exploiter les trois types d'attaques présentées précédemment. Disponible à l'adresse suivante: \url{https://github.com/ferreolpennel/Krokmou}, cette application de démonstration est utilisable par tout utilisateur satisafaisant les pré-requis à son installation. L'application, appelée \bsc{Krokmou}, est dédiée à l'ARDrone 2.0 et ne permet des attaques que contre ce type de drone et ce à des fins de démonstration uniquement. Elle permet ainsi de prendre le contrôle d'un drone à la place d'un utilisateur légitime déjà connecté au drone, d'envoyer des commandes pirates au drone sans déconnecter l'utilisateur légitime de celui-ci et de déposer un virus de démonstration sur le drone. Elles illustre ainsi les attaques présentées précédemment et met en relief les failles correspondantes sur ce type de drone.
+
+\subsection{Initialisation de l'application}
+L'application permet de sélectionner l'interface Wifi à utiliser pour se connecter au drone. Elle réalsie ensuite un scan des réseaux Wifi alentours et affiche ensuite uniquement les réseaux Wifi de drone Parrot. Il suffit à l'attaquant de sélectionner le drone auquel il veut se connecter puis l'application configure l'interface Wifi pour se connecter au drone.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/opening.png}
+  \caption{Initialisation de l'application}
+\end{figure}
+
+\subsection{Menu principal}
+Le menu principal de l'application permet de sélectionner une des trois attaques afin de la réaliser sur le drone auquel l'attaquant s'est connecté précédemment.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/main_menu.png}
+  \caption{Menu principal de l'application}
+\end{figure}
+
+\subsection{Prise de contrôle du drone}
+Cette option du menu permet à l'attaquant de prendre le contrôle du drone à la place de l'utilisateur légitime grâce à l'attaque décrite précédemment dans ce rapport. Le contrôle du drone se réalise au travers du navigateur Web et d'un serveur \textbf{Node.js} issu d'un dépôt Github (\url{https://github.com/functino/drone-browser}).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/taking_control.png}
+  \caption{Prise de contrôle du drone par l'application}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/control_application.png}
+  \caption{Interface de contrôle web}
+\end{figure}
+
+\subsection{Injection de commandes}
+Ce sous-menu permet à l'attaquant d'envoyer des instructions au drone sans déconnecter le client légitime de celui-ci à travers une injection de paquets.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/injection.png}
+  \caption{Sous-menu d'injection de commandes}
+\end{figure}
+
+\subsection{Dépose de virus sur le drone}
+Cette option permet d'exploiter une vulnérabilité laissant à l'attaquant un contrôle total du drone. Dans le cadre de la démonstration, l'application dépose un virus et un fichier sélectionné par l'utilisateur sur le drone. Ce fichier sera copié sur toute clé USB qui sera connectée au drone qui sera par conséquent considérée comme infectée. Par défaut, l'application dépose le virus et une image sur le drone. C'est cette image qui sera copiée sur toute clé USB connectée au drone toujours à des fins de démonstration. Cependant, l'attaquant peut indiquer le chemin d'un fichier de son choix au moment où l'application lui propose afin de remplacer cette image.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/virus.png}
+  \caption{Envoi du virus et du fichier sur le drone}
+\end{figure}

@@ -65,6 +65,8 @@ def head():
 #Display menu with options of the program
 def menu():
     os.system("clear")
+    head()
+
     print('\n{}Choose what you want to do: \n'.format(GREEN))
     print('\t{}1{} - Take control !'.format(RED, GREEN))
     print('\t{}2{} - Send control commands to make him crazy'.format(RED,GREEN))
@@ -75,7 +77,8 @@ def menu():
 #Function to call to exit Krokmou
 def shutdown():
     #stop_search_uav()      #A decommenter quand la gestion du module wifi sera correctement gérer
-    print('\n{}Exiting...\n\n'.format(GREEN))
+    print('\n{}Exiting...'.format(GREEN))
+    print("\n{}Printing an image of Krokmou while restoring services...\n".format(GREEN))
     os.system("sudo service NetworkManager start")  # restart NetworkManager
     animate_krokmou()
     os.system("clear")
@@ -154,7 +157,7 @@ def main():
             print("{}ERROR{}: No interfaces available\n".format(RED,GREEN))
             os._exit(1)
 
-
+        print("\n{}Scanning for vulnerable UAVs...".format(GREEN))
         (test,drone) = detect_uav_main(iface)
 
         #Check if computer connect to the drone
