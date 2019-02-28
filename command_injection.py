@@ -15,17 +15,20 @@ sequenceNumber = 10000000000
 def menu():
     os.system("clear")
     controler = """
-            FRONT                                 UP
-             |Z|                                  |I|
-    LEFT |Q| |S| |D| RIGHT          TURN LEFT |J| |K| |L| TURN RIGHT
-             BACK                                 DOWN
+            FRONT                                        UP
+             |Z|                                        |I|
+    LEFT |Q| |S| |D| RIGHT                TURN LEFT |J| |K| |L| TURN RIGHT
+             BACK                                       DOWN
 
-           TAKE OFF                        ________________
-             |P|                          |_____SPACE______|
-             |M|                                STOP
+
+
+
+           TAKE OFF                               ________________
+             |P|                                 |______SPACE______|
+             |M|                                        STOP
              LAND
     """
-    sys.stdout.write(controler)
+    sys.stdout.write(GREEN + controler)
 
 def hover(list_of_client, dstMAC, iface):
     global sequenceNumber
