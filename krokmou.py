@@ -43,16 +43,11 @@ def check_dependencies(requirement_file_name):
         return 1
 
     try:
-        status = subprocess.check_output("apt list | grep aircrack-ng", shell=True)
+        status = subprocess.check_output("airmon-ng", shell=True)
+
     except:
-        print("\n{}ERROR{}: Can't check the list of installed packages to check if aircrack-ng is installed\n".format(RED,GREEN))
-        os._exit(1)
-
-    if b'aircrack-ng' not in status:
-        print("\n{}ERROR{}: Aircrack suite not installed. Please install it manually before running Krokmou.\n".format(RED,GREEN))
-        os._exit(1)
-
-    #print("\n{}Aircrack-ng suite is available. Continuing...\n".format(GREEN))
+        print("\n{}ERROR{}: There was a probleme while trying to launch Aircrack-suite. Please make sure Aircrack-suite is correctly installed.\n".format(RED,GREEN))
+        return 1
 
     return 0
 
