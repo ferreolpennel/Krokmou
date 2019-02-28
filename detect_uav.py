@@ -100,6 +100,7 @@ def connect_to_uav(drone, iface):
     dhclient = subprocess.Popen(cmd,shell=True)
     try:
         dhclient.wait(30)
+        dhclient.kill()
         print("\n{}Successfully connected to UAV...\n".format(GREEN))
         os.system("clear")
     except:
