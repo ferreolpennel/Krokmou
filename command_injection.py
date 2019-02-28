@@ -15,6 +15,10 @@ sequenceNumber = 10000000000
 def menu():
     os.system("clear")
     controler = """
+
+
+
+    
             FRONT                                        UP
              |Z|                                        |I|
     LEFT |Q| |S| |D| RIGHT                TURN LEFT |J| |K| |L| TURN RIGHT
