@@ -25,7 +25,7 @@ def menu():
              |M|                                STOP
              LAND
     """
-    sys.stdout.write(controler)
+    sys.stdout.write(GREEN + controler)
 
 def hover(list_of_client, dstMAC, iface):
     global sequenceNumber
@@ -181,3 +181,6 @@ def ci_main(drone, iface):
                 print('\n{}Grrrr{}: Krokmou doesn\'t junderstand.\n'.format(RED,GREEN))
     else:
         print('\n{}Ronron{}: You\'re Krokmou\'s master. Control it with your own controler.\n'.format(RED,GREEN))
+        print("\n{}Press ENTER to return to main menu...".format(GREEN))
+        enter = input()
+        os.system("clear")
