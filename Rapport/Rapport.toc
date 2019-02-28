@@ -20,5 +20,7 @@
 \contentsline {subsection}{\numberline {6.2}Menu principal}{8}{subsection.0.6.2}
 \contentsline {subsection}{\numberline {6.3}Prise de contr\IeC {\^o}le du drone}{9}{subsection.0.6.3}
 \contentsline {subsection}{\numberline {6.4}Injection de commandes}{10}{subsection.0.6.4}
-\contentsline {subsection}{\numberline {6.5}D\IeC {\'e}pose de virus}{11}{subsection.0.6.5}
-\contentsline {section}{\numberline {7}Conclusion}{12}{section.0.7}
+\contentsline {subsection}{\numberline {6.5}D\IeC {\'e}pose de virus sur le drone}{11}{subsection.0.6.5}
+\contentsline {section}{\numberline {7}S\IeC {\'e}curisation du drone}{12}{section.0.7}
+\contentsline {subsection}{\numberline {7.1}Modification du point d'acc\IeC {\`e}s Wifi}{12}{subsection.0.7.1}
+\contentsline {section}{\numberline {8}Conclusion}{13}{section.0.8}
