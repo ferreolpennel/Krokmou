@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
-import os, sys, logging, math, time
+import os, sys, logging, math, time, subprocess
 from time import sleep
-from command_injection import *
-from christmas_present import *
-from take_control import *
-from search_uav import *
-from detect_uav import *
+
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m'
+
+import pip
+from pip.req import parse_requirements
+import pkg_resources
+from pkg_resources import DistributionNotFound, VersionConflict
 
 #Check if Krokmou was launched with root privileges
 try:
@@ -17,42 +18,62 @@ try:
 except:
     pass
 
+def check_dependencies(requirement_file_name):
+    """Checks to see if the python dependencies are fullfilled. If check passes return 0. Otherwise print error and return 1"""
+    dependencies = []
+    session = pip.download.PipSession()
+    for req in parse_requirements(requirement_file_name, session=session):
+        if req.req is not None:
+            dependencies.append(str(req.req))
+        else: # The req probably refers to a url. Depending on the # format req.link.url may be able to be parsed to find the # required package.
+            pass
+    try:
+        pkg_resources.working_set.require(dependencies)
+
+    except VersionConflict as e:
+        try:
+            print("{} was found on your system, " "but {} is required.\n".format(e.dist, e.req))
+            return 1
+        except AttributeError:
+            print(e)
+            return 1
+
+    except DistributionNotFound as e:
+        print(e)
+        return 1
+
+    try:
+        status = subprocess.check_output("apt list | grep aircrack-ng", shell=True)
+    except:
+        print("\n{}ERROR{}: Can't check the list of installed packages to check if aircrack-ng is installed\n".format(RED,GREEN))
+        os._exit(1)
+
+    if b'aircrack-ng' not in status:
+        print("\n{}ERROR{}: Aircrack suite not installed. Please install it manually before running Krokmou.\n".format(RED,GREEN))
+        os._exit(1)
+
+    #print("\n{}Aircrack-ng suite is available. Continuing...\n".format(GREEN))
+
+    return 0
+
+if(check_dependencies("requirements.txt")==1):
+    print("\n{}ERROR{}: Your system don't have the required dependencies to run Krokmou.\n".format(RED,GREEN))
+    print("{}Please check the README and install all the dependencies manually before running Krokmou\n".format(GREEN))
+    os._exit(1)
+
+#if dependencies ok importing modules
+from command_injection import *
+from christmas_present import *
+from take_control import *
+from search_uav import *
+from detect_uav import *
+
+#print("{}\nAll dependencies checked ! Everything ok ! Continuing...\n".format(GREEN))
+
 #Header of the program
 def head():
     os.system("clear")
-    # sys.stdout.write(GREEN + """
-    #                     ;#+`               +#'`
-    #                    ####;              ,+###.
-    #                   ###'#'              ,#'+##,
-    #                  ###'+#.         `    .#+''@#`
-    #                 +#++''#.   ++@ `#++    #+++'##
-    #                :##++++#,  ###@` ####. `#+++'##'`
-    #                ##+++++#'`##'+# .@++## :#+++'+##`
-    #               ;##+++++#'@#+++#@#++''##.##++++'#+
-    #               ##++++++#+@#+########++#'##+++''##
-    #              `##+++++########@#'@@@###@#@++++++#.
-    #              ,#+++++###++++++''+++++''+###+++'+#;
-    #              ;#+++++++++++++''+++++++++++++++++#'
-    #              ;#+++#'++++++++''+++++++++++++++++#'
-    #              ,#++#'++++++++++'++++++++++++++@++#;
-    #               #+##+++++++++++++++++++++++++++@+@.
-    #               ##@+++++++++++++##+++++++++++++@##
-    #             '@#@@++++++++++++++++'+++++++++++###@# `
-    #            `+####+++++++++++++++++++++++++++++##@#.
-    #             #+#@#+++++++++++++++++++++++++++++##'#
-    #             #+'###+#@#@@++++++++++++++#@###++@@++#
-    #             ;#++#+@#,,:@@++++++++++++@##,,.@++@++;
-    #              @###+#.,,####++++++++++##@##,,#++@##
-    #               @####.,+ ###@#++++++##,@###,,#++@#
-    #               #@#+++:;@##@,+++++++###@@##,,@+###`
-    #               ##@#+#:.#@@+.#++++++#..@#@,,@++#'+
-    #              ``##@+++@;,.'##++++++++@','@++++@+,
-    #              `  @####+++###+++++++#++##++++#@#
-    #                 ``@#@#++##+++@++##+#+++####+``
-    #                    `@#+#@@@##+#+++#@@#++##.
-    #                       ,#@##+#@#@@@+#@#+.
-    #                            `'@####.
-    # """)
+
     sys.stdout.write(GREEN + """
     ██╗  ██╗██████╗  ██████╗ ██╗  ██╗███╗   ███╗ ██████╗ ██╗   ██╗
     ██║ ██╔╝██╔══██╗██╔═══██╗██║ ██╔╝████╗ ████║██╔═══██╗██║   ██║
@@ -128,25 +149,11 @@ def animate_krokmou():
     time.sleep(2)
 
 
-
-#Checking depencies needed by Krokou
-def check_dependencies():
-    try:
-        import nmap
-        import netifaces
-        import scapy
-    except KeyboardInterrupt:
-        shutdown()
-    except:
-        print("\n{}ERROR{}: System do not meet requirements. Please check the dependencies needed by Krokmou in README\n".format(RED,GREEN))
-        os._exit(1)
-
-
 #Main function of Krokmou
 def main():
-    check_dependencies()
+
     head()
-    #launch_uav_search()    #A décommenter quand la gestion du module wifi sera correctement gérer
+    
     try:
         #Choix de l'interface de Connection
         try:
