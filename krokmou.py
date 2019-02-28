@@ -73,10 +73,6 @@ from detect_uav import *
 #Header of the program
 def head():
     os.system("clear")
-<<<<<<< HEAD
-=======
-
->>>>>>> dc6146b807b13395ead350cee43d35d5bca453e7
     sys.stdout.write(GREEN + """
     ██╗  ██╗██████╗  ██████╗ ██╗  ██╗███╗   ███╗ ██████╗ ██╗   ██╗
     ██║ ██╔╝██╔══██╗██╔═══██╗██║ ██╔╝████╗ ████║██╔═══██╗██║   ██║
@@ -156,7 +152,7 @@ def animate_krokmou():
 def main():
 
     head()
-    
+
     try:
         #Choix de l'interface de Connection
         try:
