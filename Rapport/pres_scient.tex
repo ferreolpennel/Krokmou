@@ -1,10 +1,37 @@
 \section{Présentation scientifique du travail}
 \subsection{Introduction}
+L'ARDrone 2.0 est un drone grand public Parrot dont nous allons présenter trois exploitations de failles de sécurité présentes au sein de celui-ci. Ces attaques seront présentées grâce à une application en Python appelée \textit{Krokmou}. La première attaque sera la prise de contrôle du drone par désauthentification du client, la seconde sera l'injection de commandes sur le drone et la dernière sera l'exploitation d'une connexion Telnet sur le drone.
 
+\subsection{Premier pas avec le drone}
+Dans un premier temps, après avoir allumé le drone, nous avons étudié celui-ci. La première chose que nous notons est que le drone crée un point d'accès Wifi (Access Point) afin que le client puisse se connecter à celui-ci et le contrôler au travers d'une application dédiée sur des supports Android, iOS ou PC. Toutefois, ce Wifi est un réseau ouvert et non sécurisé. Ainsi, toute personne disposant d'un matériel doté d'une carte Wifi et à portée Wifi du drone peut se connecter à celui-ci sans authentification. Toutes les communications entre le drone et le client sont donc en clair et non sécurisées. Cette faille facilite grandement l'accès au drone à l'attaquant qui n'a ainsi pas besoin de faire face à un réseau Wifi sécurisé pour accéder au drone. Ayant découvert cet accès facilité au drone, nous nous connectons à celui-ci avec un Linux et lançons un scan avec \textit{nmap} afin de connaître les ports ouverts sur le drone et découvrir des moyens d'accéder à celui-ci. Nous obtenons les resultats suivants:
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/todo.png}
+  \caption{Résultat du scan \textit{nmap} sur le drone}
+\end{figure}
 
+Nous observons un service \textbf{ftp} permettant de partager les vidéos filmées par le drone. Nous notons également un service \textbf{telnet} disponible sur le drone. Une rapide connexion à celui-ci, nous permet de voir que nous nous connectons sans identification au drone et, plus important, nous sommes \textbf{root} sur le drone ! Nous avons donc déjà potentiellement un contrôle total du drone car nous avons un accès illimité au système d'exploitation du drone.
 
-\subsection{Prise de contrôle du drone par désauthentification}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/todo.png}
+  \caption{Accès \textbf{Telnet root} sur l'ARDrone 2.0}
+\end{figure}
+
+Dans le même temps, nous nous documentons sur l'ARDrone 2.0. Grâce au SDK disponible sur le site \textbf{Parrot}, nous sommes en mesure de comprendre comment forger des commandes pour les envoyer au drone ainsi que les règles de contrôle du drone. Ainsi, nous savons que plusieurs clients peuvent être connectés au drone en même temps mais que c'est le premier qui envoie des données au drone qui en devient le "maître" et peut le contrôler.
+\newline Après cette découverte du drone, nous établissons les trois scénarios d'attaques présentés en introduction qte que nous allons décrire par la suite.
+
+\subsection{Prise de contrôle du drone par désauthentification du client}
+La première attaque que nous allons présenter est une attaque permettant la prise de contrôle complète de l'ARDrone 2.0 en déconnectant le client légitime. Une fois connecté au réseau Wifi du drone, nous effectuons une désauthentification des clients connectés au drone grâce à \textbf{Aireplay} (cf Figure X.X).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/aireplay.png}
+  \caption{Utilisation d'\textbf{Aireplay} pour désauthentifier les clients}
+\end{figure}
+
+Une fois les clients désauthentifiés, nous nous reconnectons immédiatement au drone et sommes donc les premiers connectés au drone et les premiers à communiquer avec celui-ci donc "maître" du drone. Nous utilisons ensuite une application de contrôle via le navigateur web - disponible à l'adresse suivante: \url{https://github.com/functino/drone-browser} - afin de contrôler le drone avec le PC.
 
 \subsection{Injection de paquets}
 

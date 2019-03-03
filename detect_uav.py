@@ -75,19 +75,11 @@ def find_drone(ap_list):
             drone_list.append(AP_drone(ap.bssid, ap.essid))
     return drone_list
 
-#find ap connected address
+#check if already connected to the uav
 def ap_info(iface, drone):
-    cmd = "iw {0} info |grep ssid > wifi_connection".format(iface)
-    os.system(cmd)
-    mon_fichier = open("wifi_connection", "r")
-    contenu = mon_fichier.read()
-    os.system("rm -f wifi_connection")
-    mon_fichier.close()
-    name = drone.essid
-    if re.search(name,contenu):
-        return True
-    else:
-        return False
+    cmd = "iw {0} info |grep -o -E {1}".format(iface, drone.essid)
+    ret = os.popen(cmd)
+    return not (ret.read() == '')
 
 #Connection to UAV
 def connect_to_uav(drone, iface):
