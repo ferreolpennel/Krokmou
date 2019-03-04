@@ -1,10 +1,10 @@
 \section{Sécurisation du drone}
-Comme nous avons pu le voir, cet AR Drone 2.0 de Parrot rencontre de nombreux problèmes de sécurité et reste vulnérable a certaines attaques. L'une vulnérabilité principale se trouve dans le point d'accès Wifi qui est un réseau ouvert donc accessible à toute personne se trouvant à portée du drone.
+Comme nous avons pu le voir, cet AR Drone 2.0 de Parrot rencontre de nombreux problèmes de sécurité et reste vulnérable a certaines attaques. L'une des vulnérabilité principale se trouve dans le point d'accès Wifi qui est un réseau ouvert donc accessible à toute personne se trouvant à portée du drone.
 
 \subsection{Modification du point d'accès Wifi}
 L'une des premières mesures pour ce drone serait donc une modification de ce point d'accès Wifi en y ajoutant un mot de passe afin de le rendre privée. Afin de minimiser les risques de compromission du réseau, l'utilisation de la norme WPA2 semble optimale.
-Cependant, il ne semble pas possible de changer la configuration Wifi de l'AR Drone. Il est donc nécessaire d'inverser la connection et d'utiliser le drone comme un client Wifi et non comme un Acess-Point.
-Afin de pouvoir conecter le drone à unn réseau en WPA2, il est nécessaire d'effectuer de la compilation croisée sur le module \textit{wpa\_supplicant}, qui gère les connections au wifi WPA2 sur les environement Unix. En effet, le drone possède un architecture ARM et non x86. Heureusement, la communauté est riche de talent, et ce travail à déjà était fait dasn ce dépot Github: \url{https://github.com/daraosn/ardrone-wpa2}.
+Cependant, il ne semble pas possible de changer la configuration Wifi de l'AR Drone. Il est donc nécessaire d'inverser la connection et d'utiliser le drone comme un client Wifi et non comme un Access-Point.
+Afin de pouvoir connecter le drone à un réseau en WPA2, il est nécessaire d'effectuer de la compilation croisée sur le module \textit{wpa\_supplicant}, qui gère les connections au wifi WPA2 sur les environement Unix. En effet, le drone possède un architecture ARM et non x86. Heureusement, la communauté est riche de talent, et ce travail à déjà était fait dans ce dépot Github: \url{https://github.com/daraosn/ardrone-wpa2}.
 
 Cette manipulation se fait en plusieurs étapes:
 \begin{itemize}
@@ -14,4 +14,4 @@ Cette manipulation se fait en plusieurs étapes:
   \item contrôler le drone via le téléphone.
 \end{itemize}
 
-Avec ce procécédé, on bénéficie alors d'une connexion sécurisée avec le drone que l'on pilote. Attention toutefois à bien choisir son mot de passe. En effet, si une personne arrive à se connecter au Wifi du téléphone, le drone redevient totalement vulnérable.
+Avec ce procédé, on bénéficie alors d'une connexion sécurisée avec le drone que l'on pilote. Attention toutefois à bien choisir son mot de passe. En effet, si une personne arrive à se connecter au Wifi du téléphone, le drone redevient totalement vulnérable.
