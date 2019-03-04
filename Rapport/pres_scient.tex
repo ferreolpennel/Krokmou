@@ -60,7 +60,63 @@ La commande est la suivante:
 Une fois les clients désauthentifiés, nous nous reconnectons immédiatement au drone et sommes donc les premiers connectés au drone et les premiers à communiquer avec celui-ci donc "maître" du drone. Nous utilisons ensuite une application de contrôle via le navigateur web - disponible à l'adresse suivante: \url{https://github.com/functino/drone-browser} - afin de contrôler le drone avec le PC.
 
 \subsection{Injection de paquets}
-Cette seconde attaque a pour objectif d'injecter des commandes au drone sans en prendre le contrôle complètement.
+Cette seconde attaque a pour objectif d'injecter des commandes au drone sans en prendre le contrôle complètement. Le but est de faire exécuter certaines commandes tout en laissant le contrôle à l'utilisateur légitime.
+
+\subsubsection{Liaison de commande}
+La liaison de commande se fait entre le client et l'access point via le port \textbf{5556} en source et destination. Le client ne fait qu'envoyer régulièrement des paquets UDP pour maintenir et/ou commander le drone. Il n'y a pas de retour de la part du drone via cette liaison. Les informations à propos du drone sont envoyées par le drone vers le client via des paquets UDP sur le port \textbf{5554} en source et en destination. On va donc uniquement utiliser la liaison de commande pour injecter des commandes.
+
+\subsubsection{Format des paquets UDP}
+Pour créer des paquets de commandes légitimes, il faut étudier la forme de ceux-ci. Les paquets UDP transportent une chaîne de caractère qui sera interprétée par le drone.\\\\
+Il faut que la chaîne de caractère commence par \textbf{AT*} puis vient le type de commandes :
+\begin{itemize}
+\item \textbf{REF} pour le décollage, atterrissage et le mode d'urgence
+\item \textbf{PCMD} pour déplacer le drone
+\item \textbf{PCMD\_MAG} pour déplacer le drone avec Absolute Control support
+\item \textbf{FTRIM} régler la référence au plan horizontal (doit être au sol)
+\item \textbf{CONFIG} configuration de l'AR Drone 2.0
+\item \textbf{CONFIG\_IDS} identifiants pour les AT*CONFIG commandes
+\item \textbf{COMWDG} réinitialise la communication
+\item \textbf{CALIB} demande au drone de recalibrer le magnétomètre (doit être en vol) 
+\end{itemize}
+Dans notre cas, nous allons uniquement injecter des commandes \textbf{REF} et \textbf{PCMD}. Voyons le format des deux commandes.\\\\
+Pour toutes les commandes, il faut que la chaîne de caractère soit suivi d'un \textbf{=} et d'un numéro de séquence. Le client incrémente ce numéro de séquence à chaque envoie de commande. Le drone valide uniquement les commandes donc le numéro de séquence est supérieur au précédent. Il faut donc prendre un numéro de séquence qui est au moins supérieur à celui en cours. Pour cela on prendra \textbf{10000000000} en numéro de séquence ce qui nous assure de façon quasi-sûr d'être supérieur à celui en cours. On incrémentera également celui-ci à chaque envoie de commande injectée.\\\\
+Pour \textbf{REF}, on va chercher à créer des ordres de décollage et d’atterrissage. Pour cela le numéro de séquence doit être suivi d'un argument qui sera égal à \textbf{290718208} pour le décollage et \textbf{290717696} pour l'atterrissage. Cela correspond à la modification du bit 9 du nombre codé sur 32 bits.\\\\
+On a donc \textbf{AT*REF=10000000000,290718208<CR>} pour le décollage et \textbf{AT*REF=10000000000,290717696<CR>} pour le décollage. On notera que les arguments doivent être séparés par une virgule et que la chaîne de caractère doit se terminer par un retour chariot noté <CR>.\\\\
+Pour \textbf{PCMD}, il y a 5 arguments à la suite du numéro de séquence. Le premier informe si on utilise des commandes progressives et/ou le Combined Yaw mode,le second contrôle le déplacement gauche/droite, le troisième le déplacement avant/arrière, le quatrième le déplacement vertical et le cinquième la rotation selon l'axe vertical.\\\\
+Pour le premier argument, on prend \textbf{1} ce qui correspond à l'activation du Combined Yaw mode.\\\\
+Les autres arguments correspondent à une valeur entre -1 et 1. On demande donc au drone un pourcentage des limites de déplacement et de rotation défini dans la configuration du drone. On choisira une valeur de +/-0.3 pour avoir des commandes non trop sensibles. Cela correspond à passer l'argument +/-1050253722 qui est la représentation de 0.3 en nombre flottant à précision simple sur 32 bits puis en l'entier représenté sur 32 bits.\\\\
+On a donc les commandes suivantes :
+\begin{itemize}
+\item Gauche \textbf{AT*PCMD=10000000000,1,-1050253722,0,0,0}
+\item Droite \textbf{AT*PCMD=10000000000,1,1050253722,0,0,0}
+\item Avancer \textbf{AT*PCMD=10000000000,1,0,-1050253722,0,0}
+\item Reculer \textbf{AT*PCMD=10000000000,1,0,1050253722,0,0}
+\item Descendre \textbf{AT*PCMD=10000000000,1,0,0,-1050253722,0}
+\item Monter \textbf{AT*PCMD=10000000000,1,0,0,1050253722,0}
+\item Tourner à gauche \textbf{AT*PCMD=10000000000,1,0,0,0,-1050253722}
+\item Tourner à droite \textbf{AT*PCMD=10000000000,1,0,0,0,1050253722}
+\end{itemize}
+
+\subsubsection{Se faire passer pour le client légitime}
+Pour connaître les différents clients connectés au drone, on scanne le réseau WiFi à l'aide des outils \textit{nmap}. On obtient alors le couple IP/MAC de chaque client. Pour être sûr de se faire passer pour le client légitime, on va envoyer notre paquet UDP en se fessant passer pour chaque client. Pour cela, on utilise Scapy qui permet d'envoyer nos paquets UDP avec l'adresse MAC et IP d'un des clients.
+
+\subsubsection{Un contrôleur pour injecter des commandes}
+Pour simplifier l'injection de commande, on a créé un contrôleur simpliste qui permet d'injecter les commandes vues précédemment.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/todo.png}
+  \caption{Contrôleur pour l'injection de commande}
+\end{figure}
+
+Pour chaque commande, on envoie 3 paquets UDP avec un intervalle de 0.3 seconde. Cela est suffisant pour que le drone interprète notre commande.
+
+\subsubsection{Conditions du maintient du contrôle par l'utilisateur légitime}
+L'objectif de l'injection est de faire effectuer des commandes au drone tout en laissant le contrôle au client légitime. Or quand on envoie une commande avec un numéro de séquence 10000000000 ou plus, le numéro de séquence en cours du drone s'actualise à celui-ci. Le client légitime perd donc le contrôle du drone car son numéro de séquence est trop bas.\\
+On va donc réinitialiser le numéro de séquence du drone à chaque fin d'injection de commande. Pour cela, il suffit d'envoyer une commande avec le numéro de séquence 1. On utilise alors la commande REF pour réinitialiser le numéro de séquence. On envoie 3 commandes REF à 0.3 seconde d'intervalle, décollage quand le drone est en vol et atterrissage quand le drone est au sol. Cela permet de ne pas avoir d'effet sur le drone autre que celui de réinitialiser le numéro de séquence.\\
+Pour savoir l'état du drone, on considère que celui-ci est en vol. En effet, les commandes de déplacement sont interprétées uniquement en vol. La seule commande valable au sol est la demande de décollage. On modifiera cet état en fonction des ordres d’atterrissage et de décollage des injections de commande.\\
+Si le drone est dans un état autre que celui de l'utilisateur légitime alors ce dernier ne peut pas récupérer le contrôle du drone.
+
 
 \subsection{Exploitation d'une connexion Telnet}
 La dernière attaque exploite une vulnérabilité du drone. Un service \textbf{Telnet} est ouvert et permet d'accéder à un shell \textbf{root} sur le drone.

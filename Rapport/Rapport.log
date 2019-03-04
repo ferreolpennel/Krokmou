@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.5)  4 MAR 2019 19:51
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.1.9)  4 MAR 2019 19:46
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -698,11 +702,83 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.0.1}) h
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
+<<<<<<< HEAD
 l.21 \paragraph
                {DÃ©tection des clients} </home/ferreol/workspace/Krokmou/Rapport/images/todo.png>]
 File: images/todo.png Graphic file (type png)
 <use images/todo.png>
 Package pdftex.def Info: images/todo.png  used on input line 26.
+=======
+l.21 
+      <./images/todo.png>]
+<images/aireplay.png, id=178, 1600.47937pt x 194.97844pt>
+File: images/aireplay.png Graphic file (type png)
+<use images/aireplay.png>
+Package pdftex.def Info: images/aireplay.png  used on input line 24.
+(pdftex.def)             Requested size: 480.14752pt x 58.49397pt.
+
+Overfull \hbox (19.14752pt too wide) in paragraph at lines 24--25
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--39
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Overfull \hbox (180.35625pt too wide) in paragraph at lines 49--57
+\T1/lmr/m/n/12 On a donc \T1/lmr/bx/n/12 AT*REF=10000000000,290718208<CR> \T1/l
+mr/m/n/12 pour le dé-col-lage et \T1/lmr/bx/n/12 AT*REF=10000000000,290717696<C
+R>
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+[8pdfTeX warning (ext4): destination with the same identifier (name{figure.0.2}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.57 \begin{itemize}
+                     <./images/aireplay.png (PNG copy)>] [9]
+File: images/todo.png Graphic file (type png)
+<use images/todo.png>
+Package pdftex.def Info: images/todo.png  used on input line 76.
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 (pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
 <images/deauth.jpg, id=178, 105.12pt x 105.12pt>
 File: images/deauth.jpg Graphic file (type jpg)
@@ -711,6 +787,7 @@ Package pdftex.def Info: images/deauth.jpg  used on input line 35.
 (pdftex.def)             Requested size: 136.65594pt x 136.65594pt.
 File: images/todo.png Graphic file (type png)
 <use images/todo.png>
+<<<<<<< HEAD
 Package pdftex.def Info: images/todo.png  used on input line 43.
 (pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
  [8pdfTeX warning (ext4): destination with the same identifier (name{figure.0.2}) has been already used, duplicate ignored
@@ -738,6 +815,27 @@ File: images/todo.png Graphic file (type png)
 Package pdftex.def Info: images/todo.png  used on input line 78.
 (pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
  [9pdfTeX warning (ext4): destination with the same identifier (name{figure.0.5}) has been already used, duplicate ignored
+=======
+Package pdftex.def Info: images/todo.png  used on input line 94.
+(pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
+ [10pdfTeX warning (ext4): destination with the same identifier (name{figure.0.
+3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.97 
+     ]
+File: images/todo.png Graphic file (type png)
+<use images/todo.png>
+Package pdftex.def Info: images/todo.png  used on input line 102.
+(pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
+File: images/todo.png Graphic file (type png)
+<use images/todo.png>
+Package pdftex.def Info: images/todo.png  used on input line 110.
+(pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
+) [11pdfTeX warning (ext4): destination with the same identifier (name{figure.0
+.4}) has been already used, duplicate ignored
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -757,72 +855,140 @@ Package pdftex.def Info: images/todo.png  used on input line 86.
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.47 \include{pres_scient}
-                          ]
+                          pdfTeX warning (ext4): destination with the same iden
+tifier (name{figure.0.6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.47 \include{pres_scient}
+                          ] [12]
 \openout2 = `tuto.aux'.
 
+<<<<<<< HEAD
  (/home/ferreol/workspace/Krokmou/Rapport/tuto.tex
 <images/opening.png, id=201, 1199.98312pt x 774.64406pt>
+=======
+ (./tuto.tex
+<images/opening.png, id=212, 1199.98312pt x 774.64406pt>
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 File: images/opening.png Graphic file (type png)
 <use images/opening.png>
 Package pdftex.def Info: images/opening.png  used on input line 9.
 (pdftex.def)             Requested size: 359.99771pt x 232.395pt.
+<<<<<<< HEAD
 <images/main_menu.png, id=202, 1196.97188pt x 772.38562pt>
+=======
+<images/main_menu.png, id=213, 1196.97188pt x 772.38562pt>
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 File: images/main_menu.png Graphic file (type png)
 <use images/main_menu.png>
 Package pdftex.def Info: images/main_menu.png  used on input line 18.
 (pdftex.def)             Requested size: 359.09433pt x 231.71747pt.
+<<<<<<< HEAD
  [11
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.8}) has been already used, duplicate ignored
+=======
+ [13
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.0.7}) 
+has been already used, duplicate ignored
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.21 
+<<<<<<< HEAD
       </home/ferreol/workspace/Krokmou/Rapport/images/opening.png (PNG copy)>]
 <images/taking_control.png, id=209, 1202.99437pt x 664.73344pt>
+=======
+      <./images/opening.png (PNG copy)>]
+<images/taking_control.png, id=220, 1202.99437pt x 664.73344pt>
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 File: images/taking_control.png Graphic file (type png)
 <use images/taking_control.png>
 Package pdftex.def Info: images/taking_control.png  used on input line 27.
 (pdftex.def)             Requested size: 360.9011pt x 199.42157pt.
+<<<<<<< HEAD
 <images/control_application.png, id=210, 1210.5225pt x 1283.54532pt>
+=======
+<images/control_application.png, id=221, 1210.5225pt x 1283.54532pt>
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 File: images/control_application.png Graphic file (type png)
 <use images/control_application.png>
 Package pdftex.def Info: images/control_application.png  used on input line 33.
 (pdftex.def)             Requested size: 363.15955pt x 385.06657pt.
+<<<<<<< HEAD
  [12pdfTeX warning (ext4): destination with the same identifier (name{figure.0.9}) has been already used, duplicate ignored
+=======
+ [14pdfTeX warning (ext4): destination with the same identifier (name{figure.0.
+8}) has been already used, duplicate ignored
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.36 
+<<<<<<< HEAD
      pdfTeX warning (ext4): destination with the same identifier (name{figure.0.10}) has been already used, duplicate ignored
+=======
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.0
+.9}) has been already used, duplicate ignored
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.36 
+<<<<<<< HEAD
       </home/ferreol/workspace/Krokmou/Rapport/images/main_menu.png (PNG copy)> </home/ferreol/workspace/Krokmou/Rapport/images/taking_control.png (PNG copy)>]
 <images/injection.png, id=218, 1197.72469pt x 777.65532pt>
+=======
+      <./images/main_menu.png (PNG copy)> <./images/taking_control.png (PNG cop
+y)>]
+<images/injection.png, id=228, 1197.72469pt x 777.65532pt>
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 File: images/injection.png Graphic file (type png)
 <use images/injection.png>
 Package pdftex.def Info: images/injection.png  used on input line 42.
 (pdftex.def)             Requested size: 359.32018pt x 233.2984pt.
+<<<<<<< HEAD
  [13pdfTeX warning (ext4): destination with the same identifier (name{figure.0.11}) has been already used, duplicate ignored
+=======
+ [15pdfTeX warning (ext4): destination with the same identifier (name{figure.0.
+10}) has been already used, duplicate ignored
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.45 
+<<<<<<< HEAD
       </home/ferreol/workspace/Krokmou/Rapport/images/control_application.png (PNG copy)>]
 <images/virus.png, id=224, 1204.5pt x 737.00343pt>
+=======
+      <./images/control_application.png (PNG copy)>]
+<images/virus.png, id=234, 1204.5pt x 737.00343pt>
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 File: images/virus.png Graphic file (type png)
 <use images/virus.png>
 Package pdftex.def Info: images/virus.png  used on input line 51.
 (pdftex.def)             Requested size: 361.35278pt x 221.10274pt.
+<<<<<<< HEAD
 ) [14pdfTeX warning (ext4): destination with the same identifier (name{figure.0.12}) has been already used, duplicate ignored
+=======
+) [16pdfTeX warning (ext4): destination with the same identifier (name{figure.0
+.11}) has been already used, duplicate ignored
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.49 \include{tuto}
+<<<<<<< HEAD
                    pdfTeX warning (ext4): destination with the same identifier (name{figure.0.13}) has been already used, duplicate ignored
+=======
+                   pdfTeX warning (ext4): destination with the same identifier 
+(name{figure.0.12}) has been already used, duplicate ignored
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -830,13 +996,21 @@ l.49 \include{tuto}
                     </home/ferreol/workspace/Krokmou/Rapport/images/injection.png (PNG copy)> </home/ferreol/workspace/Krokmou/Rapport/images/virus.png (PNG copy)>]
 \openout2 = `securisation.aux'.
 
+<<<<<<< HEAD
  (/home/ferreol/workspace/Krokmou/Rapport/securisation.tex) [15
+=======
+ (./securisation.tex) [17
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 
 
 ]
 \openout2 = `conclu.aux'.
 
+<<<<<<< HEAD
  (/home/ferreol/workspace/Krokmou/Rapport/conclu.tex) [16
+=======
+ (./conclu.tex) [18
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
 
 
 ]
@@ -855,17 +1029,35 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 61.
  ) 
 Here is how much of TeX's memory you used:
  7611 strings out of 492982
+<<<<<<< HEAD
  112158 string characters out of 6134896
  204261 words of memory out of 5000000
+=======
+ 110185 string characters out of 6134897
+ 206264 words of memory out of 5000000
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
  10959 multiletter control sequences out of 15000+600000
  63746 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  28i,6n,30p,1468b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
+<<<<<<< HEAD
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
 Output written on /home/ferreol/workspace/Krokmou/Rapport/Rapport.pdf (17 pages, 1422226 bytes).
 PDF statistics:
  282 PDF objects out of 1000 (max. 8388607)
  245 compressed objects within 3 object streams
  61 named destinations out of 1000 (max. 500000)
+=======
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/
+public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/
+share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/publi
+c/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmtt12.pfb>
+Output written on Rapport.pdf (19 pages, 1478124 bytes).
+PDF statistics:
+ 290 PDF objects out of 1000 (max. 8388607)
+ 251 compressed objects within 3 object streams
+ 63 named destinations out of 1000 (max. 500000)
+>>>>>>> d008e429b9f4433154a30f64a6c5d79e9b613d42
  249 words of extra memory for PDF output out of 10000 (max. 10000000)
 
