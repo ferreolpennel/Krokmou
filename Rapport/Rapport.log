@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.1.9)  4 MAR 2019 16:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.1.9)  4 MAR 2019 19:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -767,33 +767,85 @@ Overfull \hbox (19.14752pt too wide) in paragraph at lines 24--25
  [][] 
  []
 
-File: images/todo.png Graphic file (type png)
-<use images/todo.png>
-Package pdftex.def Info: images/todo.png  used on input line 38.
-(pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
-File: images/todo.png Graphic file (type png)
-<use images/todo.png>
-Package pdftex.def Info: images/todo.png  used on input line 46.
-(pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--39
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Overfull \hbox (180.35625pt too wide) in paragraph at lines 49--57
+\T1/lmr/m/n/12 On a donc \T1/lmr/bx/n/12 AT*REF=10000000000,290718208<CR> \T1/l
+mr/m/n/12 pour le dé-col-lage et \T1/lmr/bx/n/12 AT*REF=10000000000,290717696<C
+R>
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--57
+
+ []
+
 [8pdfTeX warning (ext4): destination with the same identifier (name{figure.0.2}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.49 
-     pdfTeX warning (ext4): destination with the same identifier (name{figure.0
-.3}) has been already used, duplicate ignored
+l.57 \begin{itemize}
+                     <./images/aireplay.png (PNG copy)>] [9]
+File: images/todo.png Graphic file (type png)
+<use images/todo.png>
+Package pdftex.def Info: images/todo.png  used on input line 76.
+(pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
+File: images/todo.png Graphic file (type png)
+<use images/todo.png>
+Package pdftex.def Info: images/todo.png  used on input line 94.
+(pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
+ [10pdfTeX warning (ext4): destination with the same identifier (name{figure.0.
+3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.49 
-      <./images/aireplay.png (PNG copy)>]
+l.97 
+     ]
 File: images/todo.png Graphic file (type png)
 <use images/todo.png>
-Package pdftex.def Info: images/todo.png  used on input line 54.
+Package pdftex.def Info: images/todo.png  used on input line 102.
 (pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
-) [9pdfTeX warning (ext4): destination with the same identifier (name{figure.0.
-4}) has been already used, duplicate ignored
+File: images/todo.png Graphic file (type png)
+<use images/todo.png>
+Package pdftex.def Info: images/todo.png  used on input line 110.
+(pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
+) [11pdfTeX warning (ext4): destination with the same identifier (name{figure.0
+.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -804,80 +856,86 @@ tifier (name{figure.0.5}) has been already used, duplicate ignored
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.47 \include{pres_scient}
-                          ]
+                          pdfTeX warning (ext4): destination with the same iden
+tifier (name{figure.0.6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.47 \include{pres_scient}
+                          ] [12]
 \openout2 = `tuto.aux'.
 
  (./tuto.tex
-<images/opening.png, id=193, 1199.98312pt x 774.64406pt>
+<images/opening.png, id=212, 1199.98312pt x 774.64406pt>
 File: images/opening.png Graphic file (type png)
 <use images/opening.png>
 Package pdftex.def Info: images/opening.png  used on input line 9.
 (pdftex.def)             Requested size: 359.99771pt x 232.395pt.
-<images/main_menu.png, id=194, 1196.97188pt x 772.38562pt>
+<images/main_menu.png, id=213, 1196.97188pt x 772.38562pt>
 File: images/main_menu.png Graphic file (type png)
 <use images/main_menu.png>
 Package pdftex.def Info: images/main_menu.png  used on input line 18.
 (pdftex.def)             Requested size: 359.09433pt x 231.71747pt.
- [10
+ [13
 
 
-pdfTeX warning (ext4): destination with the same identifier (name{figure.0.6}) 
+pdfTeX warning (ext4): destination with the same identifier (name{figure.0.7}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.21 
       <./images/opening.png (PNG copy)>]
-<images/taking_control.png, id=201, 1202.99437pt x 664.73344pt>
+<images/taking_control.png, id=220, 1202.99437pt x 664.73344pt>
 File: images/taking_control.png Graphic file (type png)
 <use images/taking_control.png>
 Package pdftex.def Info: images/taking_control.png  used on input line 27.
 (pdftex.def)             Requested size: 360.9011pt x 199.42157pt.
-<images/control_application.png, id=202, 1210.5225pt x 1283.54532pt>
+<images/control_application.png, id=221, 1210.5225pt x 1283.54532pt>
 File: images/control_application.png Graphic file (type png)
 <use images/control_application.png>
 Package pdftex.def Info: images/control_application.png  used on input line 33.
 
 (pdftex.def)             Requested size: 363.15955pt x 385.06657pt.
- [11pdfTeX warning (ext4): destination with the same identifier (name{figure.0.
-7}) has been already used, duplicate ignored
+ [14pdfTeX warning (ext4): destination with the same identifier (name{figure.0.
+8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.36 
      pdfTeX warning (ext4): destination with the same identifier (name{figure.0
-.8}) has been already used, duplicate ignored
+.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.36 
       <./images/main_menu.png (PNG copy)> <./images/taking_control.png (PNG cop
 y)>]
-<images/injection.png, id=209, 1197.72469pt x 777.65532pt>
+<images/injection.png, id=228, 1197.72469pt x 777.65532pt>
 File: images/injection.png Graphic file (type png)
 <use images/injection.png>
 Package pdftex.def Info: images/injection.png  used on input line 42.
 (pdftex.def)             Requested size: 359.32018pt x 233.2984pt.
- [12pdfTeX warning (ext4): destination with the same identifier (name{figure.0.
-9}) has been already used, duplicate ignored
+ [15pdfTeX warning (ext4): destination with the same identifier (name{figure.0.
+10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.45 
       <./images/control_application.png (PNG copy)>]
-<images/virus.png, id=216, 1204.5pt x 737.00343pt>
+<images/virus.png, id=234, 1204.5pt x 737.00343pt>
 File: images/virus.png Graphic file (type png)
 <use images/virus.png>
 Package pdftex.def Info: images/virus.png  used on input line 51.
 (pdftex.def)             Requested size: 361.35278pt x 221.10274pt.
-) [13pdfTeX warning (ext4): destination with the same identifier (name{figure.0
-.10}) has been already used, duplicate ignored
+) [16pdfTeX warning (ext4): destination with the same identifier (name{figure.0
+.11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.49 \include{tuto}
                    pdfTeX warning (ext4): destination with the same identifier 
-(name{figure.0.11}) has been already used, duplicate ignored
+(name{figure.0.12}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -886,13 +944,13 @@ l.49 \include{tuto}
 G copy)>]
 \openout2 = `securisation.aux'.
 
- (./securisation.tex) [14
+ (./securisation.tex) [17
 
 
 ]
 \openout2 = `conclu.aux'.
 
- (./conclu.tex) [15
+ (./conclu.tex) [18
 
 
 ]
@@ -912,9 +970,9 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 61.
  ) 
 Here is how much of TeX's memory you used:
- 7602 strings out of 492982
- 110103 string characters out of 6134897
- 204264 words of memory out of 5000000
+ 7611 strings out of 492982
+ 110185 string characters out of 6134897
+ 206264 words of memory out of 5000000
  10959 multiletter control sequences out of 15000+600000
  63746 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -924,10 +982,10 @@ public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/
 share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/publi
 c/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/t
 exmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Rapport.pdf (16 pages, 1469444 bytes).
+Output written on Rapport.pdf (19 pages, 1478124 bytes).
 PDF statistics:
- 269 PDF objects out of 1000 (max. 8388607)
- 233 compressed objects within 3 object streams
- 54 named destinations out of 1000 (max. 500000)
+ 290 PDF objects out of 1000 (max. 8388607)
+ 251 compressed objects within 3 object streams
+ 63 named destinations out of 1000 (max. 500000)
  249 words of extra memory for PDF output out of 10000 (max. 10000000)
 
