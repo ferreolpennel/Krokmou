@@ -35,13 +35,16 @@ Cette option du menu permet à l'attaquant de prendre le contrôle du drone à l
 \end{figure}
 
 \subsection{Injection de commandes}
-Ce sous-menu permet à l'attaquant d'envoyer des instructions au drone sans déconnecter le client légitime de celui-ci à travers une injection de paquets.
+Ce sous-menu permet à l'attaquant d'envoyer des commandes au drone en laissant le contrôle du drone au client légitime. Les différentes injections de commandes possibles sont présentées dans l'affichage du contrôleur pour l'injection de commandes.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.3]{images/injection.png}
+  \includegraphics[scale=0.6]{images/injection_command_controler.png}
   \caption{Sous-menu d'injection de commandes}
 \end{figure}
+
+Il est donc possible de faire avancer/reculer, d'aller à gauche/droite, de monter/descendre, de tourner à gauche/droite selon l'axe vertical et de décoller/atterrir. L'utilisation du contrôleur se fait donc à l'aide du clavier. \\
+Le client légitime garde le contrôle du drone à la seule condition que le drone soit dans le même état (en vol/au sol) que celui du client légitime avant l'injection de commandes.
 
 \subsection{Dépose de virus sur le drone}
 Cette option permet d'exploiter une vulnérabilité laissant à l'attaquant un contrôle total du drone. Dans le cadre de la démonstration, l'application dépose un virus et un fichier sélectionné par l'utilisateur sur le drone. Ce fichier sera copié sur toute clé USB qui sera connectée au drone qui sera par conséquent considérée comme infectée. Par défaut, l'application dépose le virus et une image sur le drone. C'est cette image qui sera copiée sur toute clé USB connectée au drone toujours à des fins de démonstration. Cependant, l'attaquant peut indiquer le chemin d'un fichier de son choix au moment où l'application lui propose afin de remplacer cette image.
