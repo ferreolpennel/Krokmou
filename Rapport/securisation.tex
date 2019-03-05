@@ -18,3 +18,7 @@ Cette manipulation se fait en plusieurs étapes:
 \end{itemize}
 
 Avec ce procédé, on bénéficie alors d'une connexion sécurisée avec le drone que l'on pilote. Attention toutefois à bien choisir son mot de passe. En effet, si une personne arrive à se connecter au Wifi du téléphone, le drone redevient totalement vulnérable. La contrainte de cette techique est donc l'utilisation d'un point d'accès wifi annexe avec la bonne adresse ip pour le routeur. Dans un premier temps, nous l'avons essayer rapidement avec un iPhone comme point d'accès mais celui-ci n'offre pas un réseau interne du type \textit{191.168.1.0/24} et il n'est pas possible de modifier cela dans les paramètres.
+
+\section{Connection à distance}
+Comme vu précédemment, le drone dispose de 3 services tcp ouvert dont le service \textbf{ftp} et le service \textbf{telnet}. Ces deux service sont très utiles pour la dépose de fichier où encore la maintenance du drone à distance. Mais ils représentes surtout 2 portes ouvertes sur le drone et sont donc de réelles menaces pour la sécurité du drone.
+La solution la plus simple serait de supprimer ces deux services et de les remplacer par un seul et même service, le service \textbf{ssh}. En effet, le service \textbf{ssh} combine l'aspect transfert de fichier de \textbf{ftp} et l'accès à distance de \textbf{telnet} et il offre en plus des garanties de sécurité avec notamment la présence d'un authentification à la connexion. Attention cependant, cette solution n'est viable que si le mot de passe par défault est changé à la première utilisation du drone. 
