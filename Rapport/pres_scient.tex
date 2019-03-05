@@ -23,7 +23,7 @@ Une fois la connection faite, l'attaquant peut effectuer un rapide scan du rése
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.3]{images/todo.png}
+  \includegraphics[scale=0.5]{images/nmap_res}
   \caption{Nmap du réseau wifi}
 \end{figure}
 
@@ -36,19 +36,20 @@ Une fois la liste établie, il est alors possible de désauthentifier les diffé
   \caption{Désauthentification d'un client wifi}
 \end{figure}
 
-Lors d'un connexion wifi de ce type, les messages liés à la désauthentification ne sont pas chiffrés, il est alors possible pour un attaquant de forger un paquet de désauthentification avec l'adresse de la victime et de l'envoyer au drone. Le drone recevant ce paquet considère donc que la connection avec le client est donc close.
+Lors d'un connexion wifi de ce type, les messages liés à la désauthentification ne sont pas chiffrés, il est alors possible pour un attaquant de forger un paquet de désauthentification avec l'adresse de la victime et de l'envoyer au drone. Le drone recevant ce paquet considère donc que la connection avec le client est close.
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[scale=0.3]{images/todo}
-  \caption{Paquet de désauthentification}
-\end{figure}
 
 Pour cela, on utilise la suite d'outil bien connue sur Kali Linux, \textbf{Aircrack-ng} et plus particulièrement \textbf{Aireplay-ng} dans notre cas. \textbf{Aireplay-ng} va nous permmettre d'envoyer ces paquets de désauthentification au drone.
 La commande est la suivante:
 \begin{verbatim}
   aireplay-ng -0 1 -e essid_drone -a @mac_drone -c @mac_client interface
 \end{verbatim}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.5]{images/wireshark}
+  \caption{Paquet de désauthentification}
+\end{figure}
 
 % \textbf{Aireplay-ng} (cf Figure X.X).
 % \begin{figure}[H]
@@ -58,6 +59,12 @@ La commande est la suivante:
 % \end{figure}
 
 Une fois les clients désauthentifiés, nous nous reconnectons immédiatement au drone et sommes donc les premiers connectés au drone et les premiers à communiquer avec celui-ci donc "maître" du drone. Nous utilisons ensuite une application de contrôle via le navigateur web - disponible à l'adresse suivante: \url{https://github.com/functino/drone-browser} - afin de contrôler le drone avec le PC.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.2]{images/drone_browser}
+  \caption{Server nodejs pour contrôler le drone}
+\end{figure}
 
 \subsection{Injection de commandes}
 Cette seconde attaque a pour objectif d'injecter des commandes au drone sans en prendre le contrôle complètement. Le but est de faire exécuter certaines commandes tout en laissant le contrôle à l'utilisateur légitime.
@@ -76,7 +83,7 @@ Il faut que la chaîne de caractère commence par \textbf{AT*} puis vient le typ
 \item \textbf{CONFIG} configuration de l'AR Drone 2.0
 \item \textbf{CONFIG\_IDS} identifiants pour les AT*CONFIG commandes
 \item \textbf{COMWDG} réinitialise la communication
-\item \textbf{CALIB} demande au drone de recalibrer le magnétomètre (doit être en vol) 
+\item \textbf{CALIB} demande au drone de recalibrer le magnétomètre (doit être en vol)
 \end{itemize}
 Dans notre cas, nous allons uniquement injecter des commandes \textbf{REF} et \textbf{PCMD}. Voyons le format des deux commandes.\\\\
 Pour toutes les commandes, il faut que la chaîne de caractère soit suivi d'un \textbf{=} et d'un numéro de séquence. Le client incrémente ce numéro de séquence à chaque envoie de commande. Le drone valide uniquement les commandes donc le numéro de séquence est supérieur au précédent. Il faut donc prendre un numéro de séquence qui est au moins supérieur à celui en cours. Pour cela on prendra \textbf{10000000000} en numéro de séquence, ce qui nous assure de façon quasi-sûr d'être supérieur à celui en cours. On incrémentera également celui-ci à chaque envoie de commande injectée.\\\\
