@@ -26,7 +26,6 @@ Avec ce procédé, on bénéficie alors d'une connexion sécurisée avec le dron
 
 \subsection{Connexion à distance}
 Comme vu précédemment, le drone dispose de 3 services tcp ouvert dont le service \textbf{ftp} et le service \textbf{telnet}. Ces deux service sont très utiles pour la dépose de fichier où encore la maintenance du drone à distance. Mais ils représentes surtout 2 portes ouvertes sur le drone et sont donc de réelles menaces pour la sécurité du drone.
-<<<<<<< HEAD
 
 \begin{figure}[H]
   \centering
@@ -35,6 +34,3 @@ Comme vu précédemment, le drone dispose de 3 services tcp ouvert dont le servi
 \end{figure}
 
 La solution la plus simple serait de supprimer ces deux services et de les remplacer par un seul et même service, le service \textbf{ssh}. En effet, le service \textbf{ssh} combine l'aspect transfert de fichier de \textbf{ftp} et l'accès à distance de \textbf{telnet} et il offre en plus des garanties de sécurité avec notamment la présence d'un authentification à la connexion. Attention cependant, cette solution n'est viable que si le mot de passe par défault est changé à la première utilisation du drone.
-=======
-La solution la plus simple serait de supprimer ces deux services et de les remplacer par un seul et même service, le service \textbf{ssh}. En effet, le service \textbf{ssh} combine l'aspect transfert de fichier de \textbf{ftp} et l'accès à distance de \textbf{telnet} et il offre en plus des garanties de sécurité avec notamment la présence d'un authentification à la connexion. Attention cependant, cette solution n'est viable que si le mot de passe par défault est changé à la première utilisation du drone. 
->>>>>>> 486bd875abaa5c805ac042d92d59692de522d851
