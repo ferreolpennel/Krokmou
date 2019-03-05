@@ -17,13 +17,45 @@ Dans le même temps, nous nous documentons sur l'ARDrone 2.0. Grâce au SDK disp
 \newline Après cette découverte du drone, nous établissons les trois scénarios d'attaques présentés en introduction que nous allons décrire par la suite.
 
 \subsection{Prise de contrôle du drone par désauthentification du client}
-La première attaque que nous allons présenter est une attaque permettant la prise de contrôle complète de l'ARDrone 2.0 en déconnectant le client légitime. Une fois connecté au réseau Wifi du drone, nous effectuons une désauthentification des clients connectés au drone grâce à \textbf{Aireplay} (cf Figure X.X).
+La première attaque que nous allons présenter est une attaque permettant la prise de contrôle complète de l'ARDrone 2.0. Cette attaque se base sur la vulnérabilité principale du drone: il génére un point d'accès ouvert (sans mot de passe) et autorise 4 connections en simultané. Ainsi, il est possible pour l'attaquant de se connecter au drone dès qu'il est à porté du signal wifi. Il est alors possible ensuite de déconnecter les clients du wifi.
+\paragraph{Détection des clients}
+Une fois la connection faite, l'attaquant peut effectuer un rapide scan du réseau wifi avec l'outil \textbf{Nmap}, qui permet d'obtenir la liste des appareils connecter au réseau (adresses IP et MAC).
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.3]{images/aireplay.png}
-  \caption{Utilisation d'\textbf{Aireplay} pour désauthentifier les clients}
+  \includegraphics[scale=0.3]{images/todo.png}
+  \caption{Nmap du réseau wifi}
 \end{figure}
+
+\paragraph{Déconnection du wifi}
+Une fois la liste établie, il est alors possible de désauthentifier les différents clients du drone. Mais avant cela, regardons de plus près cette attaque:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=1.3]{images/deauth}
+  \caption{Désauthentification d'un client wifi}
+\end{figure}
+
+Lors d'un connexion wifi de ce type, les messages liés à la désauthentification ne sont pas chiffrés, il est alors possible pour un attaquant de forger un paquet de désauthentification avec l'adresse de la victime et de l'envoyer au drone. Le drone recevant ce paquet considère donc que la connection avec le client est donc close.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/todo}
+  \caption{Paquet de désauthentification}
+\end{figure}
+
+Pour cela, on utilise la suite d'outil bien connue sur Kali Linux, \textbf{Aircrack-ng} et plus particulièrement \textbf{Aireplay-ng} dans notre cas. \textbf{Aireplay-ng} va nous permmettre d'envoyer ces paquets de désauthentification au drone.
+La commande est la suivante:
+\begin{verbatim}
+  aireplay-ng -0 1 -e essid_drone -a @mac_drone -c @mac_client interface
+\end{verbatim}
+
+% \textbf{Aireplay-ng} (cf Figure X.X).
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[scale=0.3]{images/aireplay.png}
+%   \caption{Utilisation d'\textbf{Aireplay-ng} pour désauthentifier les clients}
+% \end{figure}
 
 Une fois les clients désauthentifiés, nous nous reconnectons immédiatement au drone et sommes donc les premiers connectés au drone et les premiers à communiquer avec celui-ci donc "maître" du drone. Nous utilisons ensuite une application de contrôle via le navigateur web - disponible à l'adresse suivante: \url{https://github.com/functino/drone-browser} - afin de contrôler le drone avec le PC.
 
