@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.1.9)  4 MAR 2019 19:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.1.9)  5 MAR 2019 10:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -788,10 +788,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--57
  []
 
 
-Overfull \hbox (180.35625pt too wide) in paragraph at lines 49--57
+Overfull \hbox (0.32024pt too wide) in paragraph at lines 49--57
 \T1/lmr/m/n/12 On a donc \T1/lmr/bx/n/12 AT*REF=10000000000,290718208<CR> \T1/l
-mr/m/n/12 pour le dé-col-lage et \T1/lmr/bx/n/12 AT*REF=10000000000,290717696<C
-R>
+mr/m/n/12 pour le dé-col-lage et \T1/lmr/bx/n/12 AT*REF= 
  []
 
 
@@ -821,10 +820,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--57
                                                   \fi \fi 
 l.57 \begin{itemize}
                      <./images/aireplay.png (PNG copy)>] [9]
-File: images/todo.png Graphic file (type png)
-<use images/todo.png>
-Package pdftex.def Info: images/todo.png  used on input line 76.
-(pdftex.def)             Requested size: 90.33818pt x 81.30437pt.
+<images/injection_command_controler.png, id=192, 692.5875pt x 265.99374pt>
+File: images/injection_command_controler.png Graphic file (type png)
+<use images/injection_command_controler.png>
+Package pdftex.def Info: images/injection_command_controler.png  used on input 
+line 76.
+(pdftex.def)             Requested size: 415.5557pt x 159.59747pt.
 File: images/todo.png Graphic file (type png)
 <use images/todo.png>
 Package pdftex.def Info: images/todo.png  used on input line 94.
@@ -835,7 +836,7 @@ Package pdftex.def Info: images/todo.png  used on input line 94.
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.97 
-     ]
+      <./images/injection_command_controler.png>]
 File: images/todo.png Graphic file (type png)
 <use images/todo.png>
 Package pdftex.def Info: images/todo.png  used on input line 102.
@@ -866,12 +867,12 @@ l.47 \include{pres_scient}
 \openout2 = `tuto.aux'.
 
  (./tuto.tex
-<images/opening.png, id=212, 1199.98312pt x 774.64406pt>
+<images/opening.png, id=215, 1199.98312pt x 774.64406pt>
 File: images/opening.png Graphic file (type png)
 <use images/opening.png>
 Package pdftex.def Info: images/opening.png  used on input line 9.
 (pdftex.def)             Requested size: 359.99771pt x 232.395pt.
-<images/main_menu.png, id=213, 1196.97188pt x 772.38562pt>
+<images/main_menu.png, id=216, 1196.97188pt x 772.38562pt>
 File: images/main_menu.png Graphic file (type png)
 <use images/main_menu.png>
 Package pdftex.def Info: images/main_menu.png  used on input line 18.
@@ -886,12 +887,12 @@ has been already used, duplicate ignored
                                                   \fi \fi 
 l.21 
       <./images/opening.png (PNG copy)>]
-<images/taking_control.png, id=220, 1202.99437pt x 664.73344pt>
+<images/taking_control.png, id=223, 1202.99437pt x 664.73344pt>
 File: images/taking_control.png Graphic file (type png)
 <use images/taking_control.png>
 Package pdftex.def Info: images/taking_control.png  used on input line 27.
 (pdftex.def)             Requested size: 360.9011pt x 199.42157pt.
-<images/control_application.png, id=221, 1210.5225pt x 1283.54532pt>
+<images/control_application.png, id=224, 1210.5225pt x 1283.54532pt>
 File: images/control_application.png Graphic file (type png)
 <use images/control_application.png>
 Package pdftex.def Info: images/control_application.png  used on input line 33.
@@ -911,7 +912,7 @@ l.36
 l.36 
       <./images/main_menu.png (PNG copy)> <./images/taking_control.png (PNG cop
 y)>]
-<images/injection.png, id=228, 1197.72469pt x 777.65532pt>
+<images/injection.png, id=231, 1197.72469pt x 777.65532pt>
 File: images/injection.png Graphic file (type png)
 <use images/injection.png>
 Package pdftex.def Info: images/injection.png  used on input line 42.
@@ -923,7 +924,7 @@ Package pdftex.def Info: images/injection.png  used on input line 42.
                                                   \fi \fi 
 l.45 
       <./images/control_application.png (PNG copy)>]
-<images/virus.png, id=234, 1204.5pt x 737.00343pt>
+<images/virus.png, id=237, 1204.5pt x 737.00343pt>
 File: images/virus.png Graphic file (type png)
 <use images/virus.png>
 Package pdftex.def Info: images/virus.png  used on input line 51.
@@ -962,7 +963,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 61.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 61.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 61.
 Package rerunfilecheck Info: File `Rapport.out' has not changed.
-(rerunfilecheck)             Checksum: F36DAD0D1F825138D29B427C573DE555;1910.
+(rerunfilecheck)             Checksum: 4B98DBDE0E691A49CAD61DB400B51B2A;1912.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -970,10 +971,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 61.
  ) 
 Here is how much of TeX's memory you used:
- 7611 strings out of 492982
- 110185 string characters out of 6134897
+ 7616 strings out of 492982
+ 110387 string characters out of 6134897
  206264 words of memory out of 5000000
- 10959 multiletter control sequences out of 15000+600000
+ 10963 multiletter control sequences out of 15000+600000
  63746 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  28i,6n,30p,1468b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -982,10 +983,10 @@ public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/
 share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/publi
 c/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/t
 exmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Rapport.pdf (19 pages, 1478124 bytes).
+Output written on Rapport.pdf (19 pages, 1486415 bytes).
 PDF statistics:
- 290 PDF objects out of 1000 (max. 8388607)
- 251 compressed objects within 3 object streams
+ 293 PDF objects out of 1000 (max. 8388607)
+ 252 compressed objects within 3 object streams
  63 named destinations out of 1000 (max. 500000)
- 249 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 254 words of extra memory for PDF output out of 10000 (max. 10000000)
 
