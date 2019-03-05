@@ -7,7 +7,7 @@ Dans un premier temps, après avoir allumé le drone, nous avons étudié celui-
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.3]{images/todo.png}
+  \includegraphics[scale=0.3]{images/scan_drone}
   \caption{Résultat du scan \textit{nmap} sur le drone}
 \end{figure}
 
@@ -57,7 +57,7 @@ La commande est la suivante:
 %   \includegraphics[scale=0.3]{images/aireplay.png}
 %   \caption{Utilisation d'\textbf{Aireplay-ng} pour désauthentifier les clients}
 % \end{figure}
-
+\paragraph{Contrôle du drone}
 Une fois les clients désauthentifiés, nous nous reconnectons immédiatement au drone et sommes donc les premiers connectés au drone et les premiers à communiquer avec celui-ci donc "maître" du drone. Nous utilisons ensuite une application de contrôle via le navigateur web - disponible à l'adresse suivante: \url{https://github.com/functino/drone-browser} - afin de contrôler le drone avec le PC.
 
 \begin{figure}[H]
@@ -65,6 +65,20 @@ Une fois les clients désauthentifiés, nous nous reconnectons immédiatement au
   \includegraphics[scale=0.2]{images/drone_browser}
   \caption{Server nodejs pour contrôler le drone}
 \end{figure}
+
+\paragraph{Cas d'une seule connection}
+Si on se place dans le cas de figure où une seule connection wifi est autorisée par le drone, cette attaque est reste faisable, toujours grâce à la suite d'outils \textbf{Aircrack-ng}. En effet, l'outil \textbf{Airodump-ng} permet de detecter les réseaux wifi aux alentours ainsi que les clients connectés, via la commande suivante:
+\begin{verbatim}
+  airodump-ng -t -OPN interface
+\end{verbatim}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.5]{images/airodump}
+  \caption{\textbf{Airodump-ng} sur le drone}
+\end{figure}
+
+Il suffit ensuite d'envoyer les paquets de désauthentification comme précédemment et nous pouvons alors nous connecter au drone en tant que seul client.
 
 \subsection{Injection de commandes}
 Cette seconde attaque a pour objectif d'injecter des commandes au drone sans en prendre le contrôle complètement. Le but est de faire exécuter certaines commandes tout en laissant le contrôle à l'utilisateur légitime.
