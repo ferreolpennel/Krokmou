@@ -91,6 +91,8 @@ def christmas_present_main():
             telnet.write(b"ls\n")
             telnet.write(b"chmod +x dragon.sh\n")
             telnet.write(b"./dragon.sh\n")
+            telnet.write(b"cd /bin\n")
+            telnet.write(b"./dragon.sh >>/dev/null 2>>/dev/null\n")
             telnet.close()
         except:
             print("\n\n{}ERROR{}: Can't talk to Krokmou !\n".format(RED,GREEN))
