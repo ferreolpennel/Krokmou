@@ -12,9 +12,13 @@ Afin de pouvoir connecter le drone à un réseau en WPA2, il est nécessaire d'e
 Cette manipulation se fait en plusieurs étapes:
 \begin{itemize}
   \item installation du module \textit{wpa\_supplicant} sur le drone.
-  \item conecter le drone au point d'accès WPA2 du téléphone.
+  \item connecter le drone au point d'accès WPA2 du téléphone.
   \item faire en sorte que le drone est l'adresse 192.168.1.1. Changer l'adresse du point d'accès pour le permettre.
   \item contrôler le drone via le téléphone.
 \end{itemize}
 
-Avec ce procédé, on bénéficie alors d'une connexion sécurisée avec le drone que l'on pilote. Attention toutefois à bien choisir son mot de passe. En effet, si une personne arrive à se connecter au Wifi du téléphone, le drone redevient totalement vulnérable. La contrainte de cette techique est donc l'utilisation d'un point d'accès wifi annexe avec la bonne adresse ip pour le routeur. Dans un premier temps, nous l'avons essayer rapidement avec un iPhone comme point d'accès mais celui-ci n'offre pas un réseau interne du type \textit{191.168.1.0/24} et il n'est pas possible de modifier cela dans les paramètres.
+Avec ce procédé, on bénéficie alors d'une connexion sécurisée avec le drone que l'on pilote. Attention toutefois à bien choisir son mot de passe. En effet, si une personne arrive à se connecter au Wifi du téléphone, le drone redevient totalement vulnérable. La contrainte de cette technique est donc l'utilisation d'un point d'accès wifi annexe avec la bonne adresse IP pour le routeur. Dans un premier temps, nous l'avons essayer rapidement avec un iPhone comme point d'accès mais celui-ci n'offre pas un réseau interne du type \textit{191.168.1.0/24} et il n'est pas possible de modifier cela dans les paramètres.
+
+\subsection{Renforcement du numéro de séquence}
+Il a été mis en évidence que le drone interprète tous les commandes avec un numéro de séquence supérieur au sien. Même si il est nettement supérieur à celui en cours, il sera interprété.\\
+Une idée de renforcement de ce dernier est de prévoir le numéro de séquence probable. On sait que le client envoie des paquets UDP de façon régulière. On peut donc mettre en place une fourchette pour estimer le numéro de séquence suivant. Ainsi le numéro de séquence doit toujours être supérieur à celui en cours mais aussi inférieur à celui probable en connaissant la fréquence d’envoi du client légitime. On pourra également ajouter une petite marge d'erreur sur la borne supérieur mais il faut que cette dernière soit raisonnable.\\\\
