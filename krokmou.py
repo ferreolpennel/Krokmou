@@ -62,6 +62,7 @@ from christmas_present import *
 from take_control import *
 from search_uav import *
 from detect_uav import *
+from dos import *
 
 #print("{}\nAll dependencies checked ! Everything ok ! Continuing...\n".format(GREEN))
 
@@ -210,6 +211,8 @@ def main():
                 ci_main(drone, iface)
             elif choice == '3':
                 christmas_present_main()
+            elif choice == '4' :
+                dos_main(drone, iface)
             else:
                 print('\n{}ERROR{}: Bad option. Please select a valid option.\n'.format(RED,GREEN))
     except KeyboardInterrupt:
