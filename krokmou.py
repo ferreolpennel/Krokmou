@@ -87,6 +87,7 @@ def menu():
     print('\t{}1{} - Take control !'.format(RED, GREEN))
     print('\t{}2{} - Send control commands to make him crazy'.format(RED,GREEN))
     print('\t{}3{} - Leave a Christmas present for USB keys'.format(RED,GREEN))
+    print('\t{}4{} - Break the link with the master'.format(RED, GREEN))
     print('\n\t{}E{} - Exit\n'.format(RED,GREEN))
 
 
