@@ -1,5 +1,6 @@
 #!/bin/sh
 var=$(pwd)
+rep='/data/video/usb0'
 echo $var
 if [ $var != '/bin' ]
 then
@@ -11,6 +12,9 @@ then
 fi
 while [ 1=1 ]
 do
-  cp krok_* /data/video/usb0
+  if [ -d $rep ]
+  then
+    cp krok_* /data/video/usb0
+  fi
   sleep 30
 done
