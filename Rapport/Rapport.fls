@@ -168,13 +168,13 @@ INPUT /home/alexis/workspace/Krokmou/Rapport/pres_vulg.tex
 OUTPUT /home/alexis/workspace/Krokmou/Rapport/pres_scient.aux
 INPUT /home/alexis/workspace/Krokmou/Rapport/pres_scient.tex
 INPUT /home/alexis/workspace/Krokmou/Rapport/pres_scient.tex
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmtt12.tfm
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/nmap.png
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/nmap.png
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/nmap.png
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/nmap_res.png
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/nmap_res.png
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/nmap_res.png
@@ -187,6 +187,9 @@ INPUT /home/alexis/workspace/Krokmou/Rapport/images/wireshark.png
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/drone_browser.png
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/drone_browser.png
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/drone_browser.png
+INPUT /home/alexis/workspace/Krokmou/Rapport/images/airodump.png
+INPUT /home/alexis/workspace/Krokmou/Rapport/images/airodump.png
+INPUT /home/alexis/workspace/Krokmou/Rapport/images/airodump.png
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/injection_command_controler.png
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/injection_command_controler.png
 INPUT /home/alexis/workspace/Krokmou/Rapport/images/injection_command_controler.png
@@ -222,6 +225,9 @@ INPUT /home/alexis/workspace/Krokmou/Rapport/images/virus.png
 OUTPUT /home/alexis/workspace/Krokmou/Rapport/securisation.aux
 INPUT /home/alexis/workspace/Krokmou/Rapport/securisation.tex
 INPUT /home/alexis/workspace/Krokmou/Rapport/securisation.tex
+INPUT /home/alexis/workspace/Krokmou/Rapport/images/scan_drone.png
+INPUT /home/alexis/workspace/Krokmou/Rapport/images/scan_drone.png
+INPUT /home/alexis/workspace/Krokmou/Rapport/images/scan_drone.png
 OUTPUT /home/alexis/workspace/Krokmou/Rapport/conclu.aux
 INPUT /home/alexis/workspace/Krokmou/Rapport/conclu.tex
 INPUT /home/alexis/workspace/Krokmou/Rapport/conclu.tex
