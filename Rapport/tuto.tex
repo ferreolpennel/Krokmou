@@ -56,7 +56,10 @@ Cette option permet d'exploiter une vulnérabilité laissant à l'attaquant un c
 \end{figure}
 
 \subsection{Déni de service}
-La dernière option permet de réaliser l'attaque de "l'Homme du milieu" sur le client. Une fois selectionnées, cette option permet de bloquer le lien entre le client et le drone. Onpeut au choix bloquer toute les communications avec le drone ou alors bloquer seulement la liason de commande et laisser la liaison vidéo au client.
+La dernière option permet de réaliser deux types de dénis de service. La première possibilité, le déni de service complet par ARP spoofing, se base sur l'attaque de "l'Homme du milieu". Une fois sélectionnée, cette option permet de bloquer le lien entre le client et le drone et donc toutes communications.\\
+Pour la seconde possibilité, on bloque la légitimité des paquets de commande du client. Ce qui bloque uniquement la liaison de commande.\\
+Dans les deux cas, le déni de service s'arrête quand l'attaquant le désire.
+
 
 \begin{figure}[H]
   \centering
