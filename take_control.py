@@ -90,7 +90,7 @@ def take_control_main(drone, iface):
     else:
         mac_drone = drone.bssid
         drone_essid = drone.essid
-        # iface_mon = iface+"mon"
+        iface_mon = iface+"mon"
         # scan_wifi(iface_mon,drone)
         try :
             channel = find_channel(iface)
@@ -98,7 +98,10 @@ def take_control_main(drone, iface):
             eject_client(client_list, mac_drone, drone_essid, iface_mon, channel)
             stop_airmon(iface_mon)
         except:
-            print("{}ERROR{}:No client connected{}".format(RED,GREEN, WHITE))
+            stop_airmon(iface_mon)
+            print("{}ERROR{}:Impossible to eject client{}".format(RED,GREEN, WHITE))
+            os._exit(1)
+
         connect_to_uav(drone, iface)  #re-connection to the UAV
         serv = launch_server()
 
