@@ -11,9 +11,9 @@ Ce projet porte sur l'AR Drone 2.0 de Parrot. Le but étant de faire un état de
 # Installation:
 Installation rapide via cette ligne de commande à copier dans le terminal.
 
-    git clone https://github.com/ferreolpennel/Krokmou.git && cd Krokmou 
-    && git clone https://github.com/functino/drone-browser.git && cd drone-browser && npm install -d 
-    && cd ../
+    git clone https://github.com/ferreolpennel/Krokmou.git && cd Krokmou && 
+    git clone https://github.com/functino/drone-browser.git && cd drone-browser && npm install -d &&
+    cd ../
 
 
 # Lancement de Krokmou
