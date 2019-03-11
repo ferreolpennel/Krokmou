@@ -1,6 +1,6 @@
 \section{Présentation scientifique du travail}
 \subsection{Introduction}
-L'ARDrone 2.0 est un drone grand public \textit{Parrot} dont nous allons présenter trois exploitations de failles de sécurité présentes au sein de celui-ci. Ces attaques seront présentées grâce à une application en \textbf{Python} appelée \textit{Krokmou}. La première attaque sera la prise de contrôle du drone par désauthentification du client, la seconde sera l'injection de commandes sur le drone et la dernière sera l'exploitation d'une connexion Telnet sur le drone.
+L'ARDrone 2.0 est un drone grand public \textit{Parrot} dont nous allons présenter quatre exploitations de failles de sécurité présentes au sein de celui-ci. Ces attaques seront présentées grâce à une application en \textbf{Python} appelée \textit{Krokmou}. La première attaque sera la prise de contrôle du drone par désauthentification du client, la seconde sera l'injection de commandes sur le drone, la troisième sera l'exploitation d'une connexion Telnet sur le drone et la dernière présentera une attaque par déni de service.
 
 \subsection{Premier pas avec le drone}
 Dans un premier temps, après avoir allumé le drone, nous avons étudié celui-ci. La première chose que nous notons est que le drone crée un point d'accès Wifi (Access Point) afin que le client puisse se connecter à celui-ci et le contrôler au travers d'une application dédiée sur des supports Android, iOS ou PC. Toutefois, ce Wifi est un réseau ouvert et non sécurisé. Ainsi, toute personne disposant d'un matériel doté d'une carte Wifi et à portée Wifi du drone peut se connecter à celui-ci sans authentification. Toutes les communications entre le drone et le client sont donc en clair et non sécurisées. Cette faille facilite grandement l'accès au drone pour l'attaquant qui n'a ainsi pas besoin de faire face à un réseau Wifi sécurisé pour accéder au drone. Ayant découvert cet accès facilité au drone, nous nous connectons à celui-ci avec un Linux et lançons un scan avec \textit{nmap} sur l'IP du drone \verb!192.168.1.1! afin de connaître les ports ouverts sur le système d'exploitation du drone et découvrir des moyens d'accéder à celui-ci. Nous obtenons les resultats suivants:
@@ -17,7 +17,7 @@ Dans le même temps, nous nous documentons sur l'ARDrone 2.0. Grâce au SDK disp
 \newline Après cette découverte de l'ARDrone 2.0 , nous établissons les trois scénarios d'attaques présentés en introduction que nous allons décrire par la suite.
 
 \subsection{Prise de contrôle du drone par désauthentification du client}
-La première attaque que nous allons présenter est une attaque permettant la prise de contrôle complète de l'ARDrone 2.0. Cette attaque se base sur la vulnérabilité principale du drone: il génére un point d'accès ouvert (sans mot de passe) et autorise 4 connections en simultané. Ainsi, l'attaquant peut se connecter au drone dès qu'il est à porté du signal Wifi et il est alors possible de déconnecter les clients du Wifi.
+La première attaque que nous allons présenter est une attaque permettant la prise de contrôle complète de l'ARDrone 2.0. Cette attaque se base sur la vulnérabilité principale du drone: il génère un point d'accès ouvert (sans mot de passe) et autorise 4 connections en simultané. Ainsi, l'attaquant peut se connecter au drone dès qu'il est à portée du signal Wifi et il est alors possible de déconnecter les clients du Wifi.
 \paragraph{Détection des clients}
 Une fois connecté au réseau, l'attaquant peut effectuer un rapide scan de celui-ci avec l'outil \textbf{Nmap}, qui permet d'obtenir la liste des appareils connectés (adresses IP et MAC).
 
@@ -27,7 +27,7 @@ Une fois connecté au réseau, l'attaquant peut effectuer un rapide scan de celu
   \caption{Scan \textbf{Nmap} du réseau wifi}
 \end{figure}
 
-\paragraph{Déconnection du wifi}
+\paragraph{Déconnection du Wifi}
 Une fois la liste établie, il est alors possible de désauthentifier les différents clients du drone. Mais avant cela, regardons de plus près cette attaque:
 
 \begin{figure}[H]
@@ -36,7 +36,7 @@ Une fois la liste établie, il est alors possible de désauthentifier les diffé
   \caption{Désauthentification d'un client wifi}
 \end{figure}
 
-Lors d'une connexion Wifi de ce type, les messages liés à la désauthentification ne sont pas chiffrés, il est alors possible pour un attaquant de forger un paquet de désauthentification avec l'adresse de la victime et de l'envoyer au drone. Le drone recevant ce paquet considère donc que la connection avec le client est close. Pour cela, on utilise la suite d'outils bien connue sur Kali Linux, \textbf{Aircrack-ng} et plus particulièrement \textbf{Aireplay-ng} dans notre cas. \textbf{Aireplay-ng} va nous permettre d'envoyer ces paquets de désauthentification au drone. La commande est la suivante:
+Lors d'une connexion Wifi de ce type, les messages liés à la désauthentification ne sont pas chiffrés, il est alors possible pour un attaquant de forger un paquet de désauthentification avec l'adresse de la victime et de l'envoyer au drone. Le drone recevant ce paquet considère donc que la connection avec le client est close. Pour cela, on utilise la suite d'outils bien connue sur Kali Linux, \textbf{Aircrack-ng} et plus particulièrement \textbf{Aireplay-ng} dans notre cas. \textbf{Aireplay-ng} va nous permettre de forger et d'envoyer ces paquets de désauthentification au drone. La commande est la suivante:
 \begin{verbatim}
   aireplay-ng -0 1 -e essid_drone -a @mac_drone -c @mac_client interface
 \end{verbatim}
@@ -47,14 +47,9 @@ Lors d'une connexion Wifi de ce type, les messages liés à la désauthentificat
   \caption{Paquet de désauthentification}
 \end{figure}
 
-% \textbf{Aireplay-ng} (cf Figure X.X).
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[scale=0.3]{images/aireplay.png}
-%   \caption{Utilisation d'\textbf{Aireplay-ng} pour désauthentifier les clients}
-% \end{figure}
+
 \paragraph{Contrôle du drone}
-Une fois les clients désauthentifiés, nous nous reconnectons immédiatement au drone et sommes donc les premiers connectés à celui-ci et à communiquer avec lui donc "maître" du drone. Nous utilisons ensuite une application de contrôle via le navigateur web - disponible à l'adresse suivante: \url{https://github.com/functino/drone-browser} - afin de piloter le drone avec le PC.
+Une fois les clients désauthentifiés, nous nous reconnectons immédiatement au drone et sommes donc les premiers connectés à celui-ci et à communiquer avec lui donc "maître" du drone. Nous utilisons ensuite une application de contrôle via le navigateur web \cite{ref5} - disponible à l'adresse suivante: \url{https://github.com/functino/drone-browser} - afin de piloter le drone avec le PC.
 
 \begin{figure}[H]
   \centering
@@ -139,7 +134,7 @@ On notera que si le drone est dans un état autre que celui de l'utilisateur lé
 
 
 \subsection{Exploitation d'une connexion Telnet}
-La dernière attaque exploite une vulnérabilité du drone. Un service \textbf{Telnet} est ouvert et permet d'accéder à un shell \textbf{root} sur le drone.
+La toisième attaque exploite une vulnérabilité du drone. Un service \textbf{Telnet} est ouvert et permet d'accéder à un shell \textbf{root} sur le drone.
 
 \begin{figure}[H]
   \centering
@@ -163,5 +158,5 @@ Il ainsi possible de modifier n'importe quel fichier du système d'exploitation 
   \caption{Virus dans le dossier \textit{/bin} du drone}
 \end{figure}
 
-Cette attaque démontre que le drone peut facilement servir de vecteur d'attaque pour diffuser un virus par clé USB. La clé permettant de récupérer des vidéos filmées apr le drone, elle sera ensuite très probablement connectée à un ordinateur appartenant au propriétaire du drone permettant ainsi la diffusion du virus. Le drone devient ainsi un vecteur de diffusion facile à exploiter et discret mais qui nécessite tout de même une proximité physique avec le drone afin de pouvoir se connecter au Wifi de celui-ci.
+Cette attaque démontre que le drone peut facilement servir de vecteur d'attaque pour diffuser un virus par clé USB. La clé permettant de récupérer des vidéos filmées par le drone, elle sera ensuite très probablement connectée à un ordinateur appartenant au propriétaire du drone permettant ainsi la diffusion du virus. Le drone devient ainsi un vecteur de diffusion facile à exploiter et discret mais qui nécessite tout de même une proximité physique avec le drone afin de pouvoir se connecter au Wifi de celui-ci.
 \newline La connexion Telnet peut être explotée de multiples manières y compris afin de réaliser des attaques plus destructrices sur le drone en supprimant des fichiers majeurs du système d'exploitation.

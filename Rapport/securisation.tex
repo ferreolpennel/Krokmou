@@ -3,11 +3,11 @@ Comme nous avons pu le voir, cet ARDrone 2.0 de \textbf{Parrot} rencontre de nom
 
 \subsection{Sécurisation via le Wifi}
 \paragraph{Modification du point d'accès}
-L'une des premières mesures pour ce drone serait donc une modification de ce point d'accès Wifi en y ajoutant un mot de passe afin de le rendre privé. Afin de minimiser les risques de compromission du réseau, l'utilisation de la norme WPA2 semble optimale. Après un rapide état de l'art sur Internet, il semblerait que personne ne se soit réellement penché sur le problème mais un fichier bash présent sur le drone, \textit{wifi\_setup.sh}, laisse présager que cette modification est possible.
+L'une des premières mesures pour ce drone serait donc une modification de ce point d'accès Wifi en y ajoutant un mot de passe afin de le rendre privé. Afin de minimiser les risques de compromission du réseau, l'utilisation de la norme WPA2 semble optimale. Après un rapide état de l'art sur Internet, il semblerait que personne ne se soit réellement penché sur le problème mais un fichier bash présent sur le drone, \textit{wifi\_setup.sh}, laisse présager que cette modification est possible. On peut aussi noter que les nouveaux drone de la société Parrot possèdent une meilleure sécurité au niveau du Wifi. En effet, le Bebop propose un Wifi WPA2 avec mot de passe mais ce n'est pas la configuration par défault.
 
 \paragraph{Utilisation du drone comme un client}
 Une autre solution consisterait à utiliser le drone non comme un point d'accès mais comme un client du Wifi.
-Afin de pouvoir connecter le drone à un réseau en WPA2, il est nécessaire d'effectuer de la compilation croisée sur le module \textit{wpa\_supplicant}, qui gère les connections au wifi WPA2 sur les environements Unix. En effet, le drone possède une architecture ARM et non x86. Heureusement, la communauté est riche de talent, et ce travail a déjà été fait dans ce dépot Github: \url{https://github.com/daraosn/ardrone-wpa2}.
+Afin de pouvoir connecter le drone à un réseau en WPA2, il est nécessaire d'effectuer de la compilation croisée sur le module \textit{wpa\_supplicant}, qui gère les connections au wifi WPA2 sur les environements Unix. En effet, le drone possède une architecture ARM et non x86. Heureusement, la communauté est riche de talent, et ce travail a déjà été fait dans ce dépot Github: \url{https://github.com/daraosn/ardrone-wpa2}.\cite{ref7}\\
 
 Cette manipulation se fait en plusieurs étapes:
 \begin{itemize}
@@ -16,8 +16,9 @@ Cette manipulation se fait en plusieurs étapes:
   \item faire en sorte que le drone ait l'adresse 192.168.1.1. Changer l'adresse du point d'accès pour le permettre.
   \item contrôler le drone via le téléphone.
 \end{itemize}
-
-Avec ce procédé, on bénéficie alors d'une connexion sécurisée avec le drone que l'on pilote. Attention toutefois à bien choisir son mot de passe. En effet, si une personne arrive à se connecter au Wifi du téléphone, le drone redevient totalement vulnérable. La contrainte de cette technique est donc l'utilisation d'un point d'accès Wifi annexe avec la bonne adresse IP pour le routeur. Dans un premier temps, nous l'avons essayer rapidement avec un iPhone comme point d'accès mais celui-ci n'offre pas un réseau interne du type \textit{191.168.1.0/24} et il n'est pas possible de modifier cela dans les paramètres.
+\medbreak
+Avec ce procédé, on bénéficie alors d'une connexion sécurisée avec le drone que l'on pilote. Attention toutefois à bien choisir son mot de passe. En effet, si une personne arrive à se connecter au Wifi du téléphone, le drone redevient totalement vulnérable.
+La contrainte de cette technique est donc l'utilisation d'un point d'accès Wifi annexe avec la bonne adresse IP pour le routeur. Dans un premier temps, nous l'avons essayer rapidement avec un iPhone comme point d'accès mais celui-ci n'offre pas un réseau interne du type \textit{191.168.1.0/24} et il n'est pas possible de modifier cela dans les paramètres.
 
 \subsection{Renforcement du numéro de séquence}
 Il a été mis en évidence que le drone interprète toutes les commandes avec un numéro de séquence supérieur au sien. Même s'il est nettement supérieur à celui en cours, il sera interprété.\\
